@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "MegaBus",
+    "slug": "MegaBus",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "MegaBus"
+}
