@@ -108,7 +108,7 @@ const Login = () => {
                             </Text>
                             <TouchableOpacity>
                                 <Text style={{ fontSize: 12, color: pryColor }}>
-                                    {" Sign Up"}
+                                    {"  Sign Up"}
                                 </Text>
                             </TouchableOpacity>
                         </View>
