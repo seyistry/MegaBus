@@ -1,20 +1,22 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
-import iconBig from "../assets/image/iconBig.jpg";
-import logoBig from "../assets/image/logoBig.jpg";
+import iconBig from "../assets/image/iconBig.png";
+import logoBig from "../assets/image/logoBig.png";
 import PButton from "../components/button/pryButton/PButton";
 import SButton from "../components/button/secButton/SButton";
 
 const LoginSignUp = () => {
     return (
         <View style={styles.container}>
-            <View style={{ height: "25%", justifyContent: "center" }}>
-                <Image source={logoBig} />
-            </View>
-            <View style={{ height: "25%", justifyContent: "center" }}>
-                <View style={{ backgroundColor: "black" }}>
-                    <Image source={iconBig} />
-                </View>
+            <View
+                style={{
+                    height: "50%",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                }}
+            >
+                <Image style={{ marginTop: 60 }} source={logoBig} />
+                <Image source={iconBig} />
             </View>
             <View
                 style={{
@@ -25,7 +27,7 @@ const LoginSignUp = () => {
                 <TouchableOpacity style={[styles.btn]}>
                     <PButton name={"Login"} />
                 </TouchableOpacity>
-                <TouchableOpacity style={{marginBottom: 60}}>
+                <TouchableOpacity style={{ marginBottom: 60 }}>
                     <SButton name={"Sign Up"} />
                 </TouchableOpacity>
             </View>
