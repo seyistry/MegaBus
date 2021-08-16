@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { Text, View, StyleSheet, Image, Animated } from "react-native";
 import { pryColor } from "../utils/color";
-import Logo from "../assets/logo.js";
+import Logo from "../assets/image/Logo";
 
 const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
@@ -33,7 +33,7 @@ const FadeInView = (props) => {
     );
 };
 
-const Load = () => {
+const LoadApp = () => {
     return (
         <View
             style={{
@@ -56,4 +56,4 @@ const Load = () => {
     );
 };
 
-export default Load;
+export default LoadApp;
