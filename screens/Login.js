@@ -81,17 +81,17 @@ const Login = () => {
                         }}
                     >
                         <View style={{ flexDirection: "row" }}>
-                            <View style={[styles.iconConatainer]}>
+                            <TouchableOpacity style={[styles.iconConatainer]}>
                                 <FacebookIcon />
-                            </View>
-                            <View
+                            </TouchableOpacity>
+                            <TouchableOpacity
                                 style={[
                                     styles.iconConatainer,
                                     { marginLeft: 40 },
                                 ]}
                             >
                                 <GoogleIcon />
-                            </View>
+                            </TouchableOpacity>
                         </View>
                         <View
                             style={{
