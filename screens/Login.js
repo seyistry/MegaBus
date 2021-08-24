@@ -21,12 +21,20 @@ const Login = () => {
             <View style={[styles.container]}>
                 <View
                     style={{
-                        height: "45%",
+                        height: "15%",
+                        alignItems: "center",
+                        justifyContent: "flex-end",
+                    }}
+                >
+                    <Image source={logoBig} />
+                </View>
+                <View
+                    style={{
+                        height: "30%",
                         alignItems: "center",
                         justifyContent: "space-evenly",
                     }}
                 >
-                    <Image source={logoBig} />
                     <Image source={iconSmall} />
                     <View>
                         <Text
