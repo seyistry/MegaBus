@@ -63,7 +63,7 @@ const SignUpOTP = () => {
                         alignItems: "center",
                     }}
                 >
-                    <ProgressBar width="25%" />
+                    <ProgressBar width="20%" />
                     <View style={{ marginTop: 20 }}>
                         <PButton name="Continue" />
                     </View>

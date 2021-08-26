@@ -62,7 +62,7 @@ const SignUpBio = () => {
                             alignItems: "center",
                         }}
                     >
-                        <ProgressBar width="50%" />
+                        <ProgressBar width="40%" />
                         <View style={{ marginVertical: 20 }}>
                             <PButton name="Continue" />
                         </View>

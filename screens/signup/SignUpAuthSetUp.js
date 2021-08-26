@@ -43,7 +43,7 @@ const SignUpAuthSetUp = () => {
                         alignItems: "center",
                     }}
                 >
-                    <ProgressBar width="75%" />
+                    <ProgressBar width="60%" />
                     <View style={{ marginVertical: 20 }}>
                         <PButton name="Continue" />
                     </View>
