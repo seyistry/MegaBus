@@ -1,11 +1,11 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import styles from './styles.js'
 
 const PButton = (props) => (
-    <View style={styles.buttonContainer}>
+    <TouchableOpacity style={styles.buttonContainer}>
         <Text style={styles.text}>{props.name}</Text>
-    </View>
+    </TouchableOpacity>
 );
 
 export default PButton;
