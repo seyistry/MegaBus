@@ -9,7 +9,12 @@ import Onboarding from "./screens/onboarding/Onboarding";
 import LoginSignUp from "./screens/LoginSignUp";
 import Login from "./screens/Login";
 import SignUp from "./screens/signup/SignUp";
+import SignUpBio from "./screens/signup/SignUpBio";
+import SignUpOTP from "./screens/signup/SignUpOTP";
 import { pryColor } from "./utils/color";
+import SignUpAuthSetUp from "./screens/signup/SignUpAuthSetUp";
+import SignUpCreatePin from "./screens/signup/SignUpCreatePin";
+import Success from "./components/Success";
 
 function MegaStatusBar({ backgroundColor, ...props }) {
     return (
@@ -38,7 +43,7 @@ export default function App() {
     return (
         <View style={styles.container}>
             <MegaStatusBar backgroundColor={pryColor} style="light" />
-            <SignUp />
+            <Success />
         </View>
     );
 }
