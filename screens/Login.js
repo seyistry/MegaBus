@@ -21,22 +21,25 @@ const Login = () => {
             <View style={[styles.container]}>
                 <View
                     style={{
-                        height: "15%",
+                        // height: "15%",
+                        marginTop: 50,
                         alignItems: "center",
-                        justifyContent: "flex-end",
+                        // justifyContent: "flex-end",
                     }}
                 >
                     <Image source={logoBig} />
                 </View>
                 <View
                     style={{
-                        height: "30%",
+                        // height: "30%",
                         alignItems: "center",
-                        justifyContent: "space-evenly",
+                        marginVertical: 20,
+                        // borderWidth: 1,
+                        // justifyContent: "space-evenly",
                     }}
                 >
                     <Image source={iconSmall} />
-                    <View>
+                    <View style={{ marginVertical: 20 }}>
                         <Text
                             style={{
                                 fontSize: 20,
@@ -65,18 +68,25 @@ const Login = () => {
                         // justifyContent: "space-around",
                     }}
                 >
-                    <FormInput name="Username" />
-                    <FormInput name="Password" />
+                    <View style={styles.form}>
+                        <FormInput name="Username" />
+                    </View>
+                    <View>
+                        <FormInput name="Password" />
+                    </View>
+
                     <View style={{ width: "100%", marginTop: 10 }}>
-                        <Text
-                            style={{
-                                color: pryColor,
-                                fontSize: 12,
-                                textAlign: "right",
-                            }}
-                        >
-                            Forgot Password?
-                        </Text>
+                        <TouchableOpacity>
+                            <Text
+                                style={{
+                                    color: pryColor,
+                                    fontSize: 12,
+                                    textAlign: "right",
+                                }}
+                            >
+                                Forgot Password?
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={{ marginTop: 30 }}>
                         <PButton name="Login" />
@@ -144,6 +154,10 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 2,
+    },
+    form: {
+        width: "100%",
+        marginBottom: 10,
     },
 });
 

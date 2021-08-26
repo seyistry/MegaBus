@@ -27,24 +27,23 @@ const SignUp = () => {
             <View style={[styles.container]}>
                 <View
                     style={{
-                        height: "15%",
+                        marginTop: 50,
                         alignItems: "center",
-                        justifyContent: "flex-end",
                     }}
                 >
                     <Image source={logoBig} />
                 </View>
                 <View
                     style={{
-                        height: "25%",
+                        marginTop: 40,
                         alignItems: "center",
-                        justifyContent: "space-evenly",
                     }}
                 >
                     <Image source={iconSmall} />
                     <View>
                         <Text
                             style={{
+                                marginTop: 20,
                                 fontSize: 20,
                                 fontWeight: "bold",
                                 textAlign: "center",
@@ -56,10 +55,9 @@ const SignUp = () => {
                 </View>
                 <View
                     style={{
+                        marginTop: 40,
                         width: "100%",
-                        height: "60%",
                         alignItems: "center",
-                        justifyContent: "space-around",
                     }}
                 >
                     <View style={{ width: "100%" }}>
@@ -80,12 +78,13 @@ const SignUp = () => {
                             flexDirection: "row",
                             alignItems: "center",
                             marginHorizontal: 36,
+                            marginTop: 20,
                         }}
                     >
                         <TouchableOpacity
                             onPress={handleToggleBox}
                             style={{
-                                // marginHorizontal: 10,
+                                marginVertical: 20,
                                 marginLeft: 10,
                             }}
                         >
@@ -127,28 +126,38 @@ const SignUp = () => {
                             </TouchableOpacity>
                         </View>
                     </View>
-                    <ProgressBar width="0%" />
+
                     <View
                         style={{
-                            flexDirection: "row",
+                            width: "100%",
+                            marginTop: 60,
+                            alignItems: "center",
                         }}
                     >
-                        <Text
+                        <ProgressBar width="0%" />
+                        <View
                             style={{
-                                fontSize: 12,
+                                flexDirection: "row",
+                                marginVertical: 20,
                             }}
                         >
-                            Already have an account?
-                        </Text>
-                        <TouchableOpacity>
-                            <Text style={{ fontSize: 12, color: pryColor }}>
-                                {"  Login"}
+                            <Text
+                                style={{
+                                    fontSize: 12,
+                                }}
+                            >
+                                Already have an account?
                             </Text>
-                        </TouchableOpacity>
+                            <TouchableOpacity>
+                                <Text style={{ fontSize: 12, color: pryColor }}>
+                                    {"  Login"}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={{ marginTop: 45 }}>
+                            <PButton name="Continue" />
+                        </View>
                     </View>
-                    <TouchableOpacity>
-                        <PButton name="Continue" />
-                    </TouchableOpacity>
                 </View>
             </View>
         </ScrollView>
