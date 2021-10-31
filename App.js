@@ -11,6 +11,7 @@ import Login from "./screens/Login";
 import SignUp from "./screens/signup/SignUp";
 import SignUpBio from "./screens/signup/SignUpBio";
 import SignUpOTP from "./screens/signup/SignUpOTP";
+import Tabs from "./navigation/Tabs";
 import { pryColor } from "./utils/color";
 import SignUpAuthSetUp from "./screens/signup/SignUpAuthSetUp";
 import SignUpCreatePin from "./screens/signup/SignUpCreatePin";
@@ -43,7 +44,9 @@ export default function App() {
     return (
         <View style={styles.container}>
             <MegaStatusBar backgroundColor={pryColor} style="light" />
-            <Success />
+            <NavigationContainer>
+                <Tabs />
+            </NavigationContainer>
         </View>
     );
 }
