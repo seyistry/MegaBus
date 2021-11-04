@@ -9,21 +9,27 @@ import {
     StyleSheet,
     Image,
 } from "react-native";
-import { black, blue, gray, green, pryColor, white } from "../../utils/color";
-import NavIcon from "../../assets/image/NavIcon";
+import {
+    black,
+    blue,
+    gray,
+    green,
+    pryColor,
+    white,
+} from "../../../utils/color";
+import NavIcon from "../../../assets/image/NavIcon";
 import { Ionicons, Entypo } from "@expo/vector-icons";
-import Blur from "../../assets/image/Blur";
-import BarcodeIcon from "../../assets/image/BarcodeIcon";
-import CheckoutIcon from "../../assets/image/CheckoutIcon";
-import ShareIcon from "../../assets/image/ShareIcon";
-import CardIcon from "../../assets/image/CardIcon";
-import NairaIcon from "../../assets/image/NairaIcon";
-import WhiteBtn from "../../components/button/whiteButton/WhiteBtn";
+import Blur from "../../../assets/image/Blur";
+import BarcodeIcon from "../../../assets/image/BarcodeIcon";
+import CheckoutIcon from "../../../assets/image/CheckoutIcon";
+import ShareIcon from "../../../assets/image/ShareIcon";
+import CardIcon from "../../../assets/image/CardIcon";
+import NairaIcon from "../../../assets/image/NairaIcon";
+import WhiteBtn from "../../../components/button/whiteButton/WhiteBtn";
 
 const Home = () => {
     const image = `https://i.pravatar.cc/150?img=12`;
     const [toggle, setToggle] = useState(false);
-
     const handleHideBalance = () =>
         toggle ? setToggle(false) : setToggle(true);
     return (
@@ -157,7 +163,7 @@ const Home = () => {
                                 fontWeight: "bold",
                                 fontSize: 27,
                                 marginLeft: 5,
-                                marginRight: 10
+                                marginRight: 10,
                             }}
                         >
                             {toggle ? "**** ***" : "5,000.00"}
