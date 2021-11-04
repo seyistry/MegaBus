@@ -15,7 +15,7 @@ const FundMain = () => {
 
     return (
         <View style={{ flex: 1, backgroundColor: white }}>
-            <Header />
+            <Header name="Fund Account" />
             <View
                 style={{
                     height: 93,
