@@ -153,14 +153,14 @@ const TransactionMainView = () => {
 const styles = StyleSheet.create({
     pickerItem: {
         fontSize: 14,
-        color: pryColor,
     },
     optionsContainer: {
-        width: 110,
+        width: 120,
         borderWidth: 1,
         borderColor: "#C2DEEE",
         height: 28,
         borderRadius: 50,
+        paddingLeft: 10,
         justifyContent: "center",
     },
     optionsDateContainer: {
