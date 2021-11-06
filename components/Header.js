@@ -3,9 +3,10 @@ import { Text, View } from "react-native";
 import { pryColor, white } from "../utils/color";
 import { Entypo } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = (props) => {
-    const goBack = () => {};
+    const navigation = useNavigation();
     return (
         <View
             style={{
@@ -25,8 +26,8 @@ const Header = (props) => {
                     border: 1,
                 }}
             >
-                <View style={{ position: "absolute" }}>
-                    <TouchableOpacity onPress={goBack}>
+                <View style={{ position: "absolute", zIndex:1 }}>
+                    <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Entypo
                             name="chevron-thin-left"
                             size={24}
