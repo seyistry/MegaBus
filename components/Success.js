@@ -6,6 +6,7 @@ import PButton from "./button/pryButton/PButton";
 import { pryColor } from "../utils/color";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Goto from "../navigation/Goto";
+import HeaderNoTitle from "./HeaderNoTitle";
 
 const Success = (props) => {
     const route = useRoute();
@@ -19,15 +20,7 @@ const Success = (props) => {
     };
     return (
         <View style={{ flex: 1, alignItems: "center" }}>
-            <View
-                style={{
-                    width: "100%",
-                    height: 64,
-                    backgroundColor: pryColor,
-                    borderBottomEndRadius: 30,
-                    borderBottomStartRadius: 30,
-                }}
-            />
+            <HeaderNoTitle />
             <Ionicons
                 style={{ marginTop: 70 }}
                 name="checkmark-circle-sharp"
