@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.8,
         shadowRadius: 2,
         elevation: 2,
+        flexDirection: "row",
     },
     text: {
         fontSize: 16,
