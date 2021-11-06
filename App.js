@@ -3,15 +3,10 @@ import { StatusBar } from "expo-status-bar";
 import Constants from "expo-constants";
 import * as ScreenOrientation from "expo-screen-orientation";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
-import LoadApp from "./screens/LoadApp";
-import Onboarding from "./screens/onboarding/Onboarding";
-import LoginSignUp from "./screens/LoginSignUp";
-import Login from "./screens/Login";
-import SignUp from "./screens/signup/SignUp";
-import SignUpBio from "./screens/signup/SignUpBio";
-import SignUpOTP from "./screens/signup/SignUpOTP";
 import Tabs from "./navigation/Tabs";
+import Stacks from "./navigation/Stacks";
 import { pryColor } from "./utils/color";
 import SignUpAuthSetUp from "./screens/signup/SignUpAuthSetUp";
 import SignUpCreatePin from "./screens/signup/SignUpCreatePin";
@@ -32,6 +27,12 @@ function MegaStatusBar({ backgroundColor, ...props }) {
 }
 
 export default function App() {
+    const [loaded] = useFonts({
+        HeeboXb: require("./assets/fonts/Heebo-ExtraBold.ttf"),
+        HeeboR: require("./assets/fonts/Heebo-Regular.ttf"),
+        HeeboM: require("./assets/fonts/Heebo-Medium.ttf"),
+    });
+
     useEffect(() => {
         lockOrientation();
     }, []);
@@ -41,14 +42,19 @@ export default function App() {
             ScreenOrientation.OrientationLock.PORTRAIT_UP
         );
     };
-    return (
-        <View style={styles.container}>
-            <MegaStatusBar backgroundColor={pryColor} style="light" />
-            <NavigationContainer>
-                <Tabs />
-            </NavigationContainer>
-        </View>
-    );
+
+    if (!loaded) {
+        return null;
+    } else {
+        return (
+            <View style={styles.container}>
+                <MegaStatusBar backgroundColor={pryColor} style="light" />
+                <NavigationContainer>
+                    <Stacks />
+                </NavigationContainer>
+            </View>
+        );
+    }
 }
 
 const styles = StyleSheet.create({
