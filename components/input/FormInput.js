@@ -42,7 +42,13 @@ const FormInput = (props) => {
                 </View>
             ) : (
                 <View>
-                    <TextInput style={styles.input} placeholder={props.name} />
+                    <TextInput
+                        style={styles.input}
+                        placeholder={props.name}
+                        keyboardType={
+                            props.type === "number" ? "numeric" : "null"
+                        }
+                    />
                 </View>
             )}
         </View>

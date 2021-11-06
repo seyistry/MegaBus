@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native";
+import { pryColor } from "../../utils/color";
 
 const styles = StyleSheet.create({
     inputContainer: {
         width: "100%",
-        height: 58,
-        backgroundColor: "#FAFAFC",
+        height: 44,
+        // backgroundColor: "#FAFAFC",
         borderWidth: 1,
-        borderColor: "#E2E9F8",
+        borderColor: pryColor,
         justifyContent: "center",
-        borderRadius: 10,
+        borderRadius: 4,
     },
     text: {
         fontSize: 16,
