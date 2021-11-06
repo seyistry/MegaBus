@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import NairaIcon from "../../../assets/image/NairaIcon";
 import { blue, grey, pryColor, white } from "../../../utils/color";
 import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
+import Goto from "../../../navigation/Goto";
 
 const FundMain = () => {
     const [toggle, setToggle] = useState(false);
+
+    const handlePress = () => {
+        return Goto({ direction: "FundAmountEntered" });
+    };
 
     const handleHideBalance = () =>
         toggle ? setToggle(false) : setToggle(true);
 
     return (
-        <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView
+            style={{ flex: 1, backgroundColor: white }}
+            stickyHeaderIndices={[1]}
+        >
             <Header name="Fund Account" />
             <View
                 style={{
@@ -76,19 +84,23 @@ const FundMain = () => {
                         Enter the amount below.
                     </Text>
                 </View>
-                <FormInput name="Amount" />
-                <View
+                <Text style={{ color: "#BFBFBF", marginBottom: 5 }}>
+                    Amount
+                </Text>
+                <FormInput name="Amount" type="number" />
+                <TouchableOpacity
                     style={{
                         flex: 1,
                         alignItems: "center",
-                        marginTop: 210,
+                        marginTop: 190,
                         marginBottom: 25,
                     }}
+                    onPress={handlePress()}
                 >
                     <PButton name="Next" />
-                </View>
+                </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 

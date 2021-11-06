@@ -16,9 +16,15 @@ import { blue, grey, pryColor, white } from "../../../utils/color";
 import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
 import CardList from "../../../components/CardList";
+import Goto from "../../../navigation/Goto";
 
 const FundAmountEntered = () => {
     const [modalVisible, setModalVisible] = useState(false);
+
+    const handleConfirmPin = () => {
+        return Goto({direction: 'Success', title: 'COMPLETED'});
+    };
+    
     return (
         <View style={{ flex: 1, backgroundColor: white }}>
             <Modal
@@ -74,10 +80,9 @@ const FundAmountEntered = () => {
                                 tintColor={pryColor}
                             />
                         </View>
-                        <PButton
-                            name="Confirm"
-                            method={() => setModalVisible(true)}
-                        />
+                        <TouchableOpacity onPress={handleConfirmPin()}>
+                            <PButton name="Confirm" />
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -158,7 +163,9 @@ const FundAmountEntered = () => {
                         marginBottom: 25,
                     }}
                 >
-                    <PButton name="Next" method={() => setModalVisible(true)} />
+                    <TouchableOpacity onPress={() => setModalVisible(true)}>
+                        <PButton name="Next" />
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
