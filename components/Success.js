@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useRoute } from "@react-navigation/native";
 import PButton from "./button/pryButton/PButton";
 import { pryColor } from "../utils/color";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import Goto from "../navigation/Goto";
 
 const Success = (props) => {
+    const route = useRoute();
+    const { title, description } = route.params;
+
+    console.log(title);
+    console.log(description);
+
+    const handlePress = () => {
+        return Goto({ direction: "Home" });
+    };
     return (
         <View style={{ flex: 1, alignItems: "center" }}>
             <View
@@ -30,13 +42,15 @@ const Success = (props) => {
                     marginTop: 30,
                 }}
             >
-                SUCCESS
+                {route.params.title}
             </Text>
             <Text style={{ fontSize: 18, textAlign: "center", marginTop: 20 }}>
-                Congratulations! You have successfully registered.
+                {description}
             </Text>
             <View style={{ marginTop: 320 }}>
-                <PButton name="Okay" />
+                <TouchableOpacity onPress={handlePress()}>
+                    <PButton name="Okay" />
+                </TouchableOpacity>
             </View>
         </View>
     );
