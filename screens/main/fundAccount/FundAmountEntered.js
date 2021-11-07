@@ -7,6 +7,7 @@ import {
     Modal,
     StyleSheet,
     Pressable,
+    ScrollView,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
@@ -22,11 +23,11 @@ const FundAmountEntered = () => {
     const [modalVisible, setModalVisible] = useState(false);
 
     const handleConfirmPin = () => {
-        return Goto({direction: 'Success', title: 'COMPLETED'});
+        return Goto({ direction: "Success", title: "COMPLETED" });
     };
-    
+
     return (
-        <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView style={{ flex: 1, backgroundColor: white }}>
             <Modal
                 animationType="slide"
                 // transparent={true}
@@ -168,7 +169,7 @@ const FundAmountEntered = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 

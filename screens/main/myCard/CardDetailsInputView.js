@@ -91,7 +91,7 @@ const CardDetailsInputView = () => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <Header name="My Card" />
             <View style={{ marginHorizontal: 20, marginTop: 20 }}>
                 <Text style={{ fontFamily: "HeeboXb", fontSize: 14 }}>
@@ -186,7 +186,7 @@ const CardDetailsInputView = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 const styles = StyleSheet.create({

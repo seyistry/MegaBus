@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
 import PButton from "./button/pryButton/PButton";
@@ -19,7 +19,10 @@ const Success = (props) => {
         return Goto({ direction: "Home" });
     };
     return (
-        <View style={{ flex: 1, alignItems: "center" }}>
+        <ScrollView
+            style={{ flex: 1 }}
+            contentContainerStyle={{ alignItems: "center" }}
+        >
             <HeaderNoTitle />
             <Ionicons
                 style={{ marginTop: 70 }}
@@ -45,7 +48,7 @@ const Success = (props) => {
                     <PButton name="Okay" />
                 </TouchableOpacity>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 

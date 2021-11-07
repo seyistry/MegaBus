@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, TextInput, StyleSheet } from "react-native";
+import { Text, View, TextInput, StyleSheet, ScrollView } from "react-native";
 import Header from "../../../components/Header";
 import { useForm, Controller } from "react-hook-form";
 import { pryColor, white } from "../../../utils/color";
@@ -31,7 +31,7 @@ const MyCardOTPcodeView = () => {
     };
 
     return (
-        <View style={{ flex: 1, backgroundColor: white }}>
+        <ScrollView style={{ flex: 1, backgroundColor: white }}>
             <Header name="My Card" />
             <View
                 style={{
@@ -85,7 +85,7 @@ const MyCardOTPcodeView = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </View>
+        </ScrollView>
     );
 };
 
