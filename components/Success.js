@@ -12,9 +12,6 @@ const Success = (props) => {
     const route = useRoute();
     const { title, description } = route.params;
 
-    console.log(title);
-    console.log(description);
-
     const handlePress = () => {
         return Goto({ direction: "Home" });
     };
@@ -38,7 +35,7 @@ const Success = (props) => {
                     marginTop: 30,
                 }}
             >
-                {route.params.title}
+                {title}
             </Text>
             <Text style={{ fontSize: 18, textAlign: "center", marginTop: 20 }}>
                 {description}
