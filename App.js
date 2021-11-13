@@ -31,6 +31,7 @@ export default function App() {
         HeeboXb: require("./assets/fonts/Heebo-ExtraBold.ttf"),
         HeeboR: require("./assets/fonts/Heebo-Regular.ttf"),
         HeeboM: require("./assets/fonts/Heebo-Medium.ttf"),
+        HeeboB: require("./assets/fonts/Heebo-Bold.ttf"),
     });
 
     useEffect(() => {
