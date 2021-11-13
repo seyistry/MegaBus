@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { useNavigation } from "@react-navigation/native";
-import { pryColor } from "../../../../utils/color";
+import { pryColor } from "../../../utils/color";
 
 const Scan = () => {
     const navigation = useNavigation();

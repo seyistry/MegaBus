@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { Text, View, Image, TouchableOpacity, ScrollView } from "react-native";
 import { useRoute } from "@react-navigation/core";
-import HeaderNoTitle from "../../../../components/HeaderNoTitle";
-import scanToBoard from "../../../../assets/image/scanToBoard.png";
-import PButton from "../../../../components/button/pryButton/PButton";
-import Goto from "../../../../navigation/Goto";
+import HeaderNoTitle from "../../../components/HeaderNoTitle";
+import scanToBoard from "../../../assets/image/scanToBoard.png";
+import PButton from "../../../components/button/pryButton/PButton";
+import Goto from "../../../navigation/Goto";
 
 const ScanToPayMainView = () => {
     const route = useRoute();
