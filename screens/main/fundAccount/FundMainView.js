@@ -3,13 +3,23 @@ import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import NairaIcon from "../../../assets/image/NairaIcon";
+import { useForm, Controller } from "react-hook-form";
 import { blue, grey, pryColor, white } from "../../../utils/color";
 import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
 import Goto from "../../../navigation/Goto";
+import { amountFormatter } from "../../../utils/formatters";
 
 const FundMain = () => {
     const [toggle, setToggle] = useState(false);
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        control,
+        reset,
+        formState: { errors },
+    } = useForm();
 
     const handlePress = () => {
         return Goto({ direction: "FundAmountEntered" });
@@ -65,7 +75,14 @@ const FundMain = () => {
                         )}
                     </TouchableOpacity>
                 </View>
-                <Text style={{ color: grey, fontSize: 12 }}>
+                <Text
+                    style={{
+                        fontFamily: "HeeboM",
+                        color: grey,
+                        fontSize: 12,
+                        textAlign: "center",
+                    }}
+                >
                     Wallet Balance
                 </Text>
             </View>
@@ -87,7 +104,36 @@ const FundMain = () => {
                 <Text style={{ color: "#BFBFBF", marginBottom: 5 }}>
                     Amount
                 </Text>
-                <FormInput name="Amount" type="number" />
+                <Controller
+                    defaultValue=""
+                    control={control}
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <FormInput
+                            // style={styles.input}
+                            keyboardType="numeric"
+                            maxLength={5}
+                            onBlur={onBlur}
+                            onChangeText={(value) => onChange(value)}
+                            value={value}
+                            register={register}
+                            name="Amount"
+                            minLength={3}
+                        />
+                    )}
+                    name="Amount"
+                    rules={{
+                        required: true,
+                        maxLength: 5,
+                        minLength: 3,
+                        message: "Name is required",
+                    }}
+                />
+                {/* <FormInput
+                    name="Amount"
+                    type="number"
+                    register={register}
+                    required
+                /> */}
                 <TouchableOpacity
                     style={{
                         flex: 1,
@@ -95,7 +141,7 @@ const FundMain = () => {
                         marginTop: 190,
                         marginBottom: 25,
                     }}
-                    onPress={handlePress()}
+                    onPress={handleSubmit(handlePress())}
                 >
                     <PButton name="Next" />
                 </TouchableOpacity>
