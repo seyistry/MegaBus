@@ -225,6 +225,7 @@ const Home = () => {
                                 marginTop: 2,
                                 overflow: "hidden",
                             }}
+                            onPress={handlePress("ShareFundsMainView")}
                         >
                             <View style={[styles.boxContainer]}>
                                 <Blur />
@@ -245,6 +246,7 @@ const Home = () => {
                                 marginBottom: 2,
                                 overflow: "hidden",
                             }}
+                            onPress={handlePress("CheckOut")}
                         >
                             <View style={[styles.boxContainer]}>
                                 <Blur />
@@ -263,6 +265,7 @@ const Home = () => {
                                 marginTop: 2,
                                 overflow: "hidden",
                             }}
+                            onPress={handlePress("LoadTransitCard")}
                         >
                             <View style={[styles.boxContainer]}>
                                 <Blur />
