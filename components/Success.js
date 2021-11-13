@@ -16,10 +16,7 @@ const Success = (props) => {
         return Goto({ direction: "Home" });
     };
     return (
-        <ScrollView
-            style={{ flex: 1 }}
-            contentContainerStyle={{ alignItems: "center" }}
-        >
+        <View style={{ flex: 1, alignItems: "center" }}>
             <HeaderNoTitle />
             <Ionicons
                 style={{ marginTop: 70 }}
@@ -40,12 +37,15 @@ const Success = (props) => {
             <Text style={{ fontSize: 18, textAlign: "center", marginTop: 20 }}>
                 {description}
             </Text>
-            <View style={{ marginTop: 320 }}>
-                <TouchableOpacity onPress={handlePress()}>
+            <View style={{ flex: 1, marginTop: 310 }}>
+                <TouchableOpacity
+                    style={{ padding: 10 }}
+                    onPress={handlePress()}
+                >
                     <PButton name="Okay" />
                 </TouchableOpacity>
             </View>
-        </ScrollView>
+        </View>
     );
 };
 
