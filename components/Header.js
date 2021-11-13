@@ -26,7 +26,7 @@ const Header = (props) => {
                     border: 1,
                 }}
             >
-                <View style={{ position: "absolute", zIndex:1 }}>
+                <View style={{ position: "absolute", zIndex: 1 }}>
                     <TouchableOpacity onPress={() => navigation.goBack()}>
                         <Entypo
                             name="chevron-thin-left"
@@ -39,8 +39,8 @@ const Header = (props) => {
                     style={{
                         color: white,
                         textAlign: "center",
+                        fontFamily: "HeeboB",
                         fontSize: 20,
-                        fontWeight: "bold",
                     }}
                 >
                     {props.name}
