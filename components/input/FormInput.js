@@ -19,7 +19,6 @@ const FormInput = (props) => {
                     <View>
                         <TextInput
                             style={styles.input}
-                            placeholder={props.name}
                             secureTextEntry={toggle}
                             {...props}
                         />
@@ -46,7 +45,6 @@ const FormInput = (props) => {
                 <View>
                     <TextInput
                         style={styles.input}
-                        placeholder={props.name}
                         {...props}
                     />
                     {props.errorText && (

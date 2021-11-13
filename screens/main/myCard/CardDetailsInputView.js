@@ -15,7 +15,7 @@ import {
     expirationDateFormatter,
 } from "../../../utils/formatters";
 import Header from "../../../components/Header";
-import { pryColor } from "../../../utils/color";
+import { labelgray, pryColor } from "../../../utils/color";
 import PButton from "../../../components/button/pryButton/PButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Goto from "../../../navigation/Goto";
@@ -110,28 +110,35 @@ const CardDetailsInputView = () => {
                 </Text>
             </View>
             <View style={{ flex: 1, marginHorizontal: 20, marginTop: 20 }}>
-                <Text style={styles.label}>Select Bank</Text>
-                <Pickers />
-                <Text style={styles.label}>Card Number</Text>
-                <Controller
-                    control={control}
-                    render={({ field: { onChange, onBlur, value } }) => (
-                        <FormInput
-                            name="card number"
-                            keyboardType="numeric"
-                            placeholder="xxxx-xxxx-xxxx-xxxx"
-                            // style={styles.input}
-                            onBlur={onBlur}
-                            onChangeText={(newValue) =>
-                                onChange(cardNumberFormatter(value, newValue))
-                            }
-                            value={value}
-                            maxLength={19}
-                        />
-                    )}
-                    name="cardNumber"
-                    rules={{ required: true, minLength: 19, maxLength: 19 }}
-                />
+                <View style={styles.formContainer}>
+                    <Text style={styles.label}>Select Bank</Text>
+                    <Pickers />
+                </View>
+                <View style={styles.formContainer}>
+                    <Text style={styles.label}>Card Number</Text>
+                    <Controller
+                        control={control}
+                        render={({ field: { onChange, onBlur, value } }) => (
+                            <FormInput
+                                name="card number"
+                                keyboardType="numeric"
+                                placeholder="xxxx-xxxx-xxxx-xxxx"
+                                // style={styles.input}
+                                onBlur={onBlur}
+                                onChangeText={(newValue) =>
+                                    onChange(
+                                        cardNumberFormatter(value, newValue)
+                                    )
+                                }
+                                value={value}
+                                maxLength={19}
+                            />
+                        )}
+                        name="cardNumber"
+                        rules={{ required: true, minLength: 19, maxLength: 19 }}
+                    />
+                </View>
+
                 <View style={{ flexDirection: "row" }}>
                     <View style={{ width: "60%" }}>
                         <Text style={styles.label}>Exp. Date</Text>
@@ -177,6 +184,7 @@ const CardDetailsInputView = () => {
                                     name="cvv"
                                     keyboardType="numeric"
                                     // style={styles.input}
+                                    placeholder="-  -  -"
                                     onBlur={onBlur}
                                     onChangeText={(value) => onChange(value)}
                                     value={value}
@@ -194,7 +202,10 @@ const CardDetailsInputView = () => {
                 </View>
 
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={handleSubmit(handlePress())}>
+                    <TouchableOpacity
+                        style={{ paddingBottom: 30 }}
+                        onPress={handleSubmit(handlePress())}
+                    >
                         <PButton name="Next" />
                     </TouchableOpacity>
                 </View>
@@ -208,14 +219,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#ffffff",
     },
     label: {
-        color: "#8F8F8F",
-        margin: 10,
-        marginLeft: 0,
+        fontFamily: "HeeboM",
+        color: labelgray,
+        fontSize: 12,
     },
     button: {
         flex: 1,
         // justifyContent: "flex-end",
-        marginTop: 180,
+        marginTop: 230,
         alignItems: "center",
         borderRadius: 4,
     },
@@ -231,13 +242,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         color: pryColor,
     },
-    optionsContainer: {
-        // width: 110,
-        // borderWidth: 1,
-        // borderColor: "#C2DEEE",
-        // height: 28,
-        // borderRadius: 50,
-        // justifyContent: "center",
+    formContainer: {
+        marginBottom: 20,
     },
 });
 

@@ -6,7 +6,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { pryColor, white } from "../../../utils/color";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import TransactionCard from "../../../components/button/TransactionCard/TransactionCard";
+import TransactionCard from "../../../components/transactionCard/TransactionCard";
 
 const Pickers = () => {
     const [selectedOptions, setSelectedOptions] = useState();
@@ -21,11 +21,7 @@ const Pickers = () => {
                 <Picker.Item
                     label="Filter By"
                     value=""
-                    style={{
-                        // marginLeft: 100,
-                        color: pryColor,
-                        fontSize: 12,
-                    }}
+                    style={styles.pickerItem}
                 />
                 <Picker.Item
                     label="All"
@@ -85,6 +81,7 @@ const TransactionMainView = () => {
                 >
                     <Text
                         style={{
+                            fontFamily: "HeeboR",
                             color: pryColor,
                             marginRight: 20,
                             fontSize: 11,
@@ -152,10 +149,12 @@ const TransactionMainView = () => {
 
 const styles = StyleSheet.create({
     pickerItem: {
-        fontSize: 14,
+        fontFamily: "HeeboR",
+        fontSize: 11,
+        color: pryColor,
     },
     optionsContainer: {
-        width: 120,
+        width: 115,
         borderWidth: 1,
         borderColor: "#C2DEEE",
         height: 28,

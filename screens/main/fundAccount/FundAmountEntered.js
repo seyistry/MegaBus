@@ -13,7 +13,7 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import NairaIcon from "../../../assets/image/NairaIcon";
 import OTPTextView from "react-native-otp-textinput";
-import { blue, grey, pryColor, white } from "../../../utils/color";
+import { blue, grey, labelgray, pryColor, white } from "../../../utils/color";
 import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
 import CardList from "../../../components/CardList";
@@ -69,14 +69,16 @@ const FundAmountEntered = () => {
                         />
                         <Text
                             style={{
+                                fontFamily: "HeeboB",
                                 marginTop: 20,
                                 fontSize: 18,
-                                fontWeight: "bold",
                             }}
                         >
                             Security Verification
                         </Text>
-                        <Text style={{ fontSize: 14 }}>Input your PIN</Text>
+                        <Text style={{ fontFamily: "HeeboR", fontSize: 14 }}>
+                            Input your PIN
+                        </Text>
                         <View style={{ marginTop: 30, marginBottom: 10 }}>
                             <OTPTextView
                                 // handleTextChange={(e) => {}}
@@ -103,7 +105,8 @@ const FundAmountEntered = () => {
                 >
                     <Text
                         style={{
-                            color: grey,
+                            fontFamily: "HeeboR",
+                            color: labelgray,
                             fontSize: 18,
                             textAlign: "center",
                         }}
@@ -121,7 +124,7 @@ const FundAmountEntered = () => {
                         <Text
                             style={{
                                 fontSize: 29,
-                                fontWeight: "bold",
+                                fontFamily: "HeeboXb",
                                 color: pryColor,
                             }}
                         >
@@ -132,7 +135,7 @@ const FundAmountEntered = () => {
                 <Text
                     style={{
                         fontSize: 14,
-                        fontWeight: "bold",
+                        fontFamily: "HeeboB",
                         marginLeft: 20,
                         marginVertical: 30,
                     }}
@@ -144,7 +147,7 @@ const FundAmountEntered = () => {
                     <CardList card="master" title="**** 2345" on={false} />
                     <CardList card="visa" title="**** 1309" on={false} />
                     <TouchableOpacity
-                        style={{ flexDirection: "row" }}
+                        style={{ flexDirection: "row", marginTop: 10 }}
                         onPress={handlePress()}
                     >
                         <Ionicons
@@ -154,6 +157,7 @@ const FundAmountEntered = () => {
                         />
                         <Text
                             style={{
+                                fontFamily: "HeeboR",
                                 color: pryColor,
                                 marginLeft: 10,
                                 fontSize: 12,
@@ -167,7 +171,7 @@ const FundAmountEntered = () => {
                     style={{
                         flex: 1,
                         alignItems: "center",
-                        marginTop: 128,
+                        marginTop: 148,
                         marginBottom: 25,
                     }}
                 >

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Text, View, TextInput, StyleSheet, ScrollView } from "react-native";
 import Header from "../../../components/Header";
 import { useForm, Controller } from "react-hook-form";
-import { pryColor, white } from "../../../utils/color";
+import { labelgray, pryColor, white } from "../../../utils/color";
 import PButton from "../../../components/button/pryButton/PButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Goto from "../../../navigation/Goto";
@@ -17,8 +17,7 @@ const MyCardOTPcodeView = () => {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            firstName: "",
-            lastName: "",
+            otp: "",
         },
     });
 
@@ -36,7 +35,7 @@ const MyCardOTPcodeView = () => {
             <View
                 style={{
                     marginHorizontal: 20,
-                    paddingTop: 20,
+                    paddingTop: 30,
                 }}
             >
                 <Text
@@ -51,14 +50,14 @@ const MyCardOTPcodeView = () => {
                 <Text style={{ fontFamily: "HeeboR", fontSize: 14 }}>
                     An OTP code has been sent to your phone number registered
                     with your Bank. Please enter the OTP code below.
-                </Text>
+                </Text> 
+                
                 <Text
                     style={{
                         fontFamily: "HeeboM",
                         fontSize: 12,
-                        color: "#BDBDBD",
+                        color: labelgray,
                         marginTop: 20,
-                        marginBottom: 10,
                     }}
                 >
                     Enter OTP Code here
@@ -68,18 +67,17 @@ const MyCardOTPcodeView = () => {
                     render={({ field: { onChange, onBlur, value } }) => (
                         <TextInput
                             keyboardType="numeric"
-                            placeholder="OTP - code"
                             style={styles.input}
                             onBlur={onBlur}
                             onChangeText={(value) => onChange(value)}
                             value={value}
-                            maxLength={10}
+                            maxLength={6}
                         />
                     )}
-                    name="firstName"
+                    name="otp"
                     rules={{ required: true }}
                 />
-                <View style={{ marginTop: 310, alignItems: "center" }}>
+                <View style={{ marginTop: 330, alignItems: "center" }}>
                     <TouchableOpacity onPress={handlePress()}>
                         <PButton name="Next" />
                     </TouchableOpacity>

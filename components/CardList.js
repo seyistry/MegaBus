@@ -16,14 +16,20 @@ const CardList = (props) => {
                 }}
             >
                 <View style={{ flexDirection: "row" }}>
-                    <View style={{width: 30}}>
+                    <View style={{ width: 30 }}>
                         {props.card === "master" ? (
                             <MasterCard />
                         ) : (
                             <VisaCard />
                         )}
                     </View>
-                    <Text style={{ fontSize: 13, marginLeft: 20 }}>
+                    <Text
+                        style={{
+                            fontFamily: "HeeboM",
+                            fontSize: 13,
+                            marginLeft: 20,
+                        }}
+                    >
                         {props.title}
                     </Text>
                 </View>

@@ -26,7 +26,7 @@ const Success = (props) => {
             />
             <Text
                 style={{
-                    fontWeight: "bold",
+                    fontFamily: "HeeboXb",
                     fontSize: 24,
                     textAlign: "center",
                     marginTop: 30,

@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
-import { white } from "../../../utils/color";
+import { white } from "../../utils/color";
 
 const TransactionCard = (props) => {
     const { itemType, itemAmount, itemDate, itemTime, itemInfo } = props;
@@ -24,13 +24,27 @@ const TransactionCard = (props) => {
                 )}
             </View>
             <View>
-                <Text style={{ fontSize: 12, color: "#8C8C8C" }}>
+                <Text
+                    style={{
+                        fontFamily: "HeeboM",
+                        fontSize: 12,
+                        color: "#8C8C8C",
+                    }}
+                >
                     {itemDate}
                 </Text>
-                <Text style={{ fontSize: 10, color: "#8C8C8C" }}>
+                <Text
+                    style={{
+                        fontFamily: "HeeboM",
+                        fontSize: 10,
+                        color: "#8C8C8C",
+                    }}
+                >
                     {itemTime}
                 </Text>
-                <Text style={{ fontSize: 14 }}>{itemInfo}</Text>
+                <Text style={{ fontFamily: "HeeboM", fontSize: 14 }}>
+                    {itemInfo}
+                </Text>
             </View>
             <View
                 style={{
@@ -43,8 +57,8 @@ const TransactionCard = (props) => {
             >
                 <Text
                     style={{
-                        fontSize: 16,
-                        fontWeight: "bold",
+                        fontSize: 17,
+                        fontFamily: "HeeboB",
                         color: itemColor,
                     }}
                 >

@@ -13,16 +13,6 @@ import MyCardOTPcodeView from "../screens/main/myCard/MyCardOTPcodeView";
 
 const Tab = createBottomTabNavigator();
 
-function HomeScreen() {
-    return (
-        <View
-            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-            <Text>Home!</Text>
-        </View>
-    );
-}
-
 function Tabs() {
     return (
         <Tab.Navigator
@@ -32,9 +22,13 @@ function Tabs() {
                 // tabBarInactiveTintColor: '#444',
                 tabBarLabelStyle: {
                     fontSize: 12,
-                    // fontWeight: "bold",
+                    fontFamily: "HeeboM",
                 },
-                tabBarStyle: { height: 60, paddingTop: 7, paddingBottom: 8 },
+                tabBarStyle: {
+                    height: 60,
+                    paddingTop: 7,
+                    paddingBottom: 8,
+                },
                 tabBarIcon: { marginTop: 60 },
             }}
         >

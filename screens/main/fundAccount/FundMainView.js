@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import NairaIcon from "../../../assets/image/NairaIcon";
 import { useForm, Controller } from "react-hook-form";
-import { blue, grey, pryColor, white } from "../../../utils/color";
+import { blue, grey, labelgray, pryColor, white } from "../../../utils/color";
 import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
 import Goto from "../../../navigation/Goto";
@@ -40,18 +40,25 @@ const FundMain = () => {
                 <View style={{ marginVertical: 60 }}>
                     <Text
                         style={{
-                            fontWeight: "bold",
+                            fontFamily: "HeeboB",
                             fontSize: 14,
                             marginBottom: 5,
                         }}
                     >
                         Add Funds to your Account
                     </Text>
-                    <Text style={{ fontSize: 14 }}>
+                    <Text style={{ fontFamily: "HeeboR", fontSize: 14 }}>
                         Enter the amount below.
                     </Text>
                 </View>
-                <Text style={{ color: "#BFBFBF", marginBottom: 5 }}>
+                <Text
+                    style={{
+                        fontFamily: "HeeboR",
+                        fontSize: 12,
+                        color: labelgray,
+                        marginBottom: 5,
+                    }}
+                >
                     Amount
                 </Text>
                 <Controller

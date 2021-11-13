@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     text: {
-        fontSize: 16,
+        fontFamily: "HeeboM",
+        fontSize: 18,
         color: "white",
         textTransform: "uppercase",
     },

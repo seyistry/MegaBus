@@ -131,9 +131,9 @@ const Home = () => {
                     </View>
                     <Text
                         style={{
+                            fontFamily: "HeeboB",
                             color: white,
                             fontSize: 14,
-                            fontWeight: "bold",
                             marginLeft: 10,
                         }}
                     >
@@ -152,7 +152,13 @@ const Home = () => {
                         justifyContent: "center",
                     }}
                 >
-                    <Text style={{ fontSize: 10, color: white }}>
+                    <Text
+                        style={{
+                            fontFamily: "HeeboR",
+                            fontSize: 10,
+                            color: white,
+                        }}
+                    >
                         Wallet Balance
                     </Text>
                     <View
@@ -166,7 +172,7 @@ const Home = () => {
                         <Text
                             style={{
                                 color: white,
-                                fontWeight: "bold",
+                                fontFamily: "HeeboB",
                                 fontSize: 27,
                                 marginLeft: 5,
                                 marginRight: 10,
@@ -188,7 +194,11 @@ const Home = () => {
                     </View>
                     <WhiteBtn />
                 </View>
-                <Text style={{ color: gray, marginTop: 10 }}>Quick links</Text>
+                <Text
+                    style={{ fontFamily: "HeeboM", color: gray, marginTop: 10 }}
+                >
+                    Quick links
+                </Text>
                 <View
                     style={{
                         flex: 1,
@@ -297,7 +307,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 15,
-        fontWeight: "bold",
+        fontFamily: "HeeboB",
         color: white,
         marginBottom: 10,
     },

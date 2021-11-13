@@ -28,7 +28,7 @@ const WhiteBtn = () => {
                 style={{
                     color: blue,
                     fontSize: 11,
-                    fontWeight: "bold",
+                    fontFamily: "HeeboB",
                     marginLeft: 10,
                 }}
             >
