@@ -19,6 +19,7 @@ import { pryColor } from "../../../utils/color";
 import PButton from "../../../components/button/pryButton/PButton";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Goto from "../../../navigation/Goto";
+import FormInput from "../../../components/input/FormInput";
 
 const Pickers = () => {
     const [selectedOptions, setSelectedOptions] = useState();
@@ -65,8 +66,9 @@ const CardDetailsInputView = () => {
         formState: { errors },
     } = useForm({
         defaultValues: {
-            firstName: "",
-            lastName: "",
+            cardNumber: "",
+            cardExpDate: "",
+            cvvCode: "",
         },
     });
 
@@ -114,10 +116,11 @@ const CardDetailsInputView = () => {
                 <Controller
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
-                        <TextInput
+                        <FormInput
+                            name="card number"
                             keyboardType="numeric"
                             placeholder="xxxx-xxxx-xxxx-xxxx"
-                            style={styles.input}
+                            // style={styles.input}
                             onBlur={onBlur}
                             onChangeText={(newValue) =>
                                 onChange(cardNumberFormatter(value, newValue))
@@ -126,8 +129,8 @@ const CardDetailsInputView = () => {
                             maxLength={19}
                         />
                     )}
-                    name="firstName"
-                    rules={{ required: true }}
+                    name="cardNumber"
+                    rules={{ required: true, minLength: 19, maxLength: 19 }}
                 />
                 <View style={{ flexDirection: "row" }}>
                     <View style={{ width: "60%" }}>
@@ -137,10 +140,11 @@ const CardDetailsInputView = () => {
                             render={({
                                 field: { onChange, onBlur, value },
                             }) => (
-                                <TextInput
+                                <FormInput
+                                    name="card Expire date"
                                     keyboardType="numeric"
                                     placeholder="MM/YY"
-                                    style={styles.input}
+                                    // style={styles.input}
                                     onBlur={onBlur}
                                     onChangeText={(newValue) =>
                                         onChange(
@@ -154,8 +158,12 @@ const CardDetailsInputView = () => {
                                     maxLength={5}
                                 />
                             )}
-                            name="lastName"
-                            rules={{ required: true }}
+                            name="cardExpDate"
+                            rules={{
+                                required: true,
+                                minLength: 5,
+                                maxLength: 5,
+                            }}
                         />
                     </View>
                     <View style={{ width: "40%", paddingLeft: 20 }}>
@@ -165,23 +173,28 @@ const CardDetailsInputView = () => {
                             render={({
                                 field: { onChange, onBlur, value },
                             }) => (
-                                <TextInput
+                                <FormInput
+                                    name="cvv"
                                     keyboardType="numeric"
-                                    style={styles.input}
+                                    // style={styles.input}
                                     onBlur={onBlur}
                                     onChangeText={(value) => onChange(value)}
                                     value={value}
                                     maxLength={3}
                                 />
                             )}
-                            name="lastName"
-                            rules={{ required: true }}
+                            name="cvvCode"
+                            rules={{
+                                required: true,
+                                minLength: 3,
+                                maxLength: 3,
+                            }}
                         />
                     </View>
                 </View>
 
                 <View style={styles.button}>
-                    <TouchableOpacity onPress={handlePress()}>
+                    <TouchableOpacity onPress={handleSubmit(handlePress())}>
                         <PButton name="Next" />
                     </TouchableOpacity>
                 </View>
