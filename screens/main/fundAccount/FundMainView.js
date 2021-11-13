@@ -111,11 +111,13 @@ const FundMain = () => {
                         <FormInput
                             // style={styles.input}
                             keyboardType="numeric"
-                            maxLength={5}
+                            maxLength={6}
                             onBlur={onBlur}
-                            onChangeText={(value) => onChange(value)}
+                            onChangeText={(newValue) =>
+                                onChange(amountFormatter(value, newValue))
+                            }
                             value={value}
-                            register={register}
+                            // register={register}
                             name="Amount"
                             minLength={3}
                         />
@@ -123,7 +125,7 @@ const FundMain = () => {
                     name="Amount"
                     rules={{
                         required: true,
-                        maxLength: 5,
+                        maxLength: 6,
                         minLength: 3,
                         message: "Name is required",
                     }}
