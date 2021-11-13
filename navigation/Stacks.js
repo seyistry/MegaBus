@@ -16,8 +16,9 @@ import Login from "../screens/Login";
 import LoginSignUp from "../screens/LoginSignUp";
 import OnboardPage from "../components/OnboardPage";
 import Success from "../components/Success";
-import ScanToPayMainView from "../screens/scanToPay/ScanToPayMainView";
-import Scan from "../screens/scanToPay/Scan";
+import ScanToPayMainView from "../screens/main/scanToPay/ScanToPayMainView";
+import Scan from "../screens/main/scanToPay/Scan";
+import ShareFundsMainView from "../screens/main/shareFunds/ShareFundsMainView";
 
 const Stack = createStackNavigator();
 
@@ -107,6 +108,11 @@ function Stacks() {
             <Stack.Screen
                 name="Scan"
                 component={Scan}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="ShareFundsMainView"
+                component={ShareFundsMainView}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
