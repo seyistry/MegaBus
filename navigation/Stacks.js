@@ -16,6 +16,8 @@ import Login from "../screens/Login";
 import LoginSignUp from "../screens/LoginSignUp";
 import OnboardPage from "../components/OnboardPage";
 import Success from "../components/Success";
+import ScanToPayMainView from "../screens/scanToPay/ScanToPayMainView";
+import Scan from "../screens/scanToPay/Scan";
 
 const Stack = createStackNavigator();
 
@@ -95,6 +97,16 @@ function Stacks() {
             <Stack.Screen
                 name="OnboardPage"
                 component={OnboardPage}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="ScanToPayMainView"
+                component={ScanToPayMainView}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Scan"
+                component={Scan}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
