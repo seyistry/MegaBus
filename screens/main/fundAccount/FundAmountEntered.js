@@ -26,6 +26,10 @@ const FundAmountEntered = () => {
         return Goto({ direction: "Success", title: "COMPLETED" });
     };
 
+    const handlePress = () => {
+        return Goto({ direction: "My Card" });
+    };
+
     return (
         <ScrollView style={{ flex: 1, backgroundColor: white }}>
             <Modal
@@ -139,7 +143,10 @@ const FundAmountEntered = () => {
                     <CardList card="master" title="**** 6789" on={true} />
                     <CardList card="master" title="**** 2345" on={false} />
                     <CardList card="visa" title="**** 1309" on={false} />
-                    <TouchableOpacity style={{ flexDirection: "row" }}>
+                    <TouchableOpacity
+                        style={{ flexDirection: "row" }}
+                        onPress={handlePress()}
+                    >
                         <Ionicons
                             name="ios-add-circle-outline"
                             size={18}
