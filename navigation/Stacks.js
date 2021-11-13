@@ -20,6 +20,7 @@ import ScanToPayMainView from "../screens/main/scanToPay/ScanToPayMainView";
 import Scan from "../screens/main/scanToPay/Scan";
 import ShareFundsMainView from "../screens/main/shareFunds/ShareFundsMainView";
 import LoadTransitCard from "../screens/main/loadTransitCard/LoadTransitCard";
+import CheckOut from "../screens/main/checkOut/CheckOut";
 
 const Stack = createStackNavigator();
 
@@ -119,6 +120,11 @@ function Stacks() {
             <Stack.Screen
                 name="LoadTransitCard"
                 component={LoadTransitCard}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="CheckOut"
+                component={CheckOut}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
