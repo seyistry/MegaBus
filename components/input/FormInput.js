@@ -5,6 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const FormInput = (props) => {
     const [toggle, setToggle] = useState(true);
+    // const { label, register, required } = props;
 
     return (
         <View style={styles.inputContainer}>
@@ -20,6 +21,7 @@ const FormInput = (props) => {
                             style={styles.input}
                             placeholder={props.name}
                             secureTextEntry={toggle}
+                            {...props}
                         />
                     </View>
                     <View style={styles.icon}>
@@ -45,10 +47,11 @@ const FormInput = (props) => {
                     <TextInput
                         style={styles.input}
                         placeholder={props.name}
-                        keyboardType={
-                            props.type === "number" ? "numeric" : "null"
-                        }
+                        {...props}
                     />
+                    {props.errorText && (
+                        <Text style={{ color: "red" }}>{props.errorText}</Text>
+                    )}
                 </View>
             )}
         </View>
