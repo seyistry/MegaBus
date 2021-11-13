@@ -26,14 +26,20 @@ import ShareIcon from "../../../assets/image/ShareIcon";
 import CardIcon from "../../../assets/image/CardIcon";
 import NairaIcon from "../../../assets/image/NairaIcon";
 import WhiteBtn from "../../../components/button/whiteButton/WhiteBtn";
+import Goto from "../../../navigation/Goto";
 
 const Home = () => {
     const image = `https://i.pravatar.cc/150?img=12`;
     const [toggle, setToggle] = useState(false);
     const handleHideBalance = () =>
         toggle ? setToggle(false) : setToggle(true);
+
+    const handlePress = (props) => {
+        return Goto({ direction: props });
+    };
+
     return (
-        <ScrollView contentContainerStyle={{ flex: 1, backgroundColor: white }}>
+        <ScrollView style={{ flex: 1, backgroundColor: white }}>
             <View
                 style={{
                     height: 170,
@@ -200,6 +206,7 @@ const Home = () => {
                                 marginBottom: 2,
                                 overflow: "hidden",
                             }}
+                            onPress={handlePress("Scan")}
                         >
                             <View style={[styles.boxContainer]}>
                                 <Blur />
