@@ -9,6 +9,7 @@ import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
 import Goto from "../../../navigation/Goto";
 import { amountFormatter } from "../../../utils/formatters";
+import BalanceDashboard from "../../../components/BalanceDashboard";
 
 const FundMain = () => {
     const [toggle, setToggle] = useState(false);
@@ -34,58 +35,7 @@ const FundMain = () => {
             stickyHeaderIndices={[1]}
         >
             <Header name="Fund Account" />
-            <View
-                style={{
-                    height: 93,
-                    marginHorizontal: 30,
-                    alignItems: "center",
-                    backgroundColor: white,
-                    marginTop: -15,
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0,
-                    shadowRadius: 2,
-                    elevation: 2,
-                }}
-            >
-                <View
-                    style={{
-                        flexDirection: "row",
-                        alignItems: "center",
-                        marginVertical: 10,
-                    }}
-                >
-                    <NairaIcon color={pryColor} />
-                    <Text
-                        style={{
-                            color: pryColor,
-                            fontWeight: "bold",
-                            fontSize: 27,
-                            marginLeft: 5,
-                            marginRight: 10,
-                        }}
-                    >
-                        {toggle ? "**** ***" : "5,000.00"}
-                    </Text>
-                    <TouchableOpacity onPress={handleHideBalance}>
-                        {toggle ? (
-                            <Ionicons name="eye" size={18} color={grey} />
-                        ) : (
-                            <Ionicons name="eye-off" size={18} color={grey} />
-                        )}
-                    </TouchableOpacity>
-                </View>
-                <Text
-                    style={{
-                        fontFamily: "HeeboM",
-                        color: grey,
-                        fontSize: 12,
-                        textAlign: "center",
-                    }}
-                >
-                    Wallet Balance
-                </Text>
-            </View>
+            <BalanceDashboard />
             <View style={{ flex: 1, marginHorizontal: 20 }}>
                 <View style={{ marginVertical: 60 }}>
                     <Text
