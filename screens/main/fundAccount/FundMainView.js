@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
+import { useNavigation } from "@react-navigation/native";
 import NairaIcon from "../../../assets/image/NairaIcon";
 import { useForm, Controller } from "react-hook-form";
 import { blue, grey, labelgray, pryColor, white } from "../../../utils/color";
@@ -21,9 +22,12 @@ const FundMain = () => {
         reset,
         formState: { errors },
     } = useForm();
+    const navigation = useNavigation();
 
-    const handlePress = () => {
-        return Goto({ direction: "FundAmountEntered" });
+    const onSubmit = (props) => {
+        navigation.navigate("FundAmountEntered", {
+            amount: props.Amount,
+        });
     };
 
     return (
@@ -92,7 +96,7 @@ const FundMain = () => {
                         marginTop: 190,
                         marginBottom: 25,
                     }}
-                    onPress={handleSubmit(handlePress())}
+                    onPress={handleSubmit(onSubmit)}
                 >
                     <PButton name="Next" />
                 </TouchableOpacity>

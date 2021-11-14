@@ -13,14 +13,18 @@ import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import Header from "../../../components/Header";
 import NairaIcon from "../../../assets/image/NairaIcon";
 import OTPTextView from "react-native-otp-textinput";
+import { useRoute } from "@react-navigation/native";
 import { blue, grey, labelgray, pryColor, white } from "../../../utils/color";
 import FormInput from "../../../components/input/FormInput";
 import PButton from "../../../components/button/pryButton/PButton";
 import CardList from "../../../components/CardList";
 import Goto from "../../../navigation/Goto";
+import { BlurView } from "expo-blur";
 
 const FundAmountEntered = () => {
     const [modalVisible, setModalVisible] = useState(false);
+    const route = useRoute();
+    const { amount } = route.params;
 
     const handleConfirmPin = () => {
         return Goto({ direction: "Success", title: "COMPLETED" });
@@ -31,68 +35,77 @@ const FundAmountEntered = () => {
     };
 
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: white }}>
+        <View style={{ flex: 1, backgroundColor: white }}>
             <Modal
                 animationType="slide"
-                // transparent={true}
+                transparent={true}
                 visible={modalVisible}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: 320,
-                                alignItems: "flex-start",
-                                left: 3,
-                                top: 2,
-                            }}
-                        >
-                            <TouchableOpacity
-                                onPress={() => setModalVisible(false)}
+                <BlurView
+                    intensity={100}
+                    tint="dark"
+                    style={styles.blurContainer}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    width: 320,
+                                    alignItems: "flex-start",
+                                    left: 3,
+                                    top: 2,
+                                }}
                             >
-                                <MaterialIcons
-                                    name="cancel"
-                                    size={31}
-                                    color="#FA0A0A"
+                                <TouchableOpacity
+                                    onPress={() => setModalVisible(false)}
+                                >
+                                    <MaterialIcons
+                                        name="cancel"
+                                        size={31}
+                                        color="#FA0A0A"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    borderWidth: 0.3,
+                                    width: 320,
+                                    top: 35,
+                                    opacity: 0.1,
+                                }}
+                            />
+                            <Text
+                                style={{
+                                    fontFamily: "HeeboB",
+                                    marginTop: 20,
+                                    fontSize: 18,
+                                }}
+                            >
+                                Security Verification
+                            </Text>
+                            <Text
+                                style={{ fontFamily: "HeeboR", fontSize: 14 }}
+                            >
+                                Input your PIN
+                            </Text>
+                            <View style={{ marginTop: 30, marginBottom: 10 }}>
+                                <OTPTextView
+                                    // handleTextChange={(e) => {}}
+                                    containerStyle={styles.textInputContainer}
+                                    textInputStyle={styles.roundedTextInput}
+                                    tintColor={pryColor}
                                 />
+                            </View>
+                            <TouchableOpacity onPress={handleConfirmPin()}>
+                                <PButton name="Confirm" />
                             </TouchableOpacity>
                         </View>
-                        <View
-                            style={{
-                                position: "absolute",
-                                borderWidth: 0.3,
-                                width: 320,
-                                top: 35,
-                                opacity: 0.1,
-                            }}
-                        />
-                        <Text
-                            style={{
-                                fontFamily: "HeeboB",
-                                marginTop: 20,
-                                fontSize: 18,
-                            }}
-                        >
-                            Security Verification
-                        </Text>
-                        <Text style={{ fontFamily: "HeeboR", fontSize: 14 }}>
-                            Input your PIN
-                        </Text>
-                        <View style={{ marginTop: 30, marginBottom: 10 }}>
-                            <OTPTextView
-                                // handleTextChange={(e) => {}}
-                                containerStyle={styles.textInputContainer}
-                                textInputStyle={styles.roundedTextInput}
-                                tintColor={pryColor}
-                            />
-                        </View>
-                        <TouchableOpacity onPress={handleConfirmPin()}>
-                            <PButton name="Confirm" />
-                        </TouchableOpacity>
                     </View>
-                </View>
+                </BlurView>
             </Modal>
+
             <Header name="Fund Account" />
             <View style={{ flex: 1 }}>
                 <View
@@ -128,7 +141,7 @@ const FundAmountEntered = () => {
                                 color: pryColor,
                             }}
                         >
-                            800.00
+                            {amount}
                         </Text>
                     </View>
                 </View>
@@ -180,7 +193,7 @@ const FundAmountEntered = () => {
                     </TouchableOpacity>
                 </View>
             </View>
-        </ScrollView>
+        </View>
     );
 };
 
@@ -190,6 +203,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22,
+    },
+    blurContainer: {
+        flex: 1,
     },
     modalView: {
         margin: 20,
