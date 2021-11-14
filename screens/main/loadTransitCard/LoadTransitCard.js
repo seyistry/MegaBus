@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import OTPTextView from "react-native-otp-textinput";
+import { useNavigation } from "@react-navigation/native";
 import Header from "../../../components/Header";
 import { Picker } from "@react-native-picker/picker";
 import { useForm, Controller } from "react-hook-form";
@@ -31,8 +32,16 @@ const LoadTransitCard = () => {
         formState: { errors },
     } = useForm();
 
-    const handleConfirmPin = () => {
-        return Goto({ direction: "Success", title: "COMPLETED" });
+    const navigation = useNavigation();
+
+    const onSubmit = (data) => {
+        return setModalVisible(() => true);
+    };
+
+    const handleConfirmPin = (props) => {
+        navigation.navigate("Success", {
+            title: "COMPLETED",
+        });
     };
 
     const [modalVisible, setModalVisible] = useState(false);
@@ -94,7 +103,7 @@ const LoadTransitCard = () => {
                                 tintColor={pryColor}
                             />
                         </View>
-                        <TouchableOpacity onPress={handleConfirmPin()}>
+                        <TouchableOpacity onPress={handleConfirmPin}>
                             <PButton name="Confirm" />
                         </TouchableOpacity>
                     </View>
@@ -119,7 +128,7 @@ const LoadTransitCard = () => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <FormInput
-                                // style={styles.input}
+                                errorText={errors?.Amount?.message}
                                 keyboardType="numeric"
                                 maxLength={6}
                                 onBlur={onBlur}
@@ -134,10 +143,13 @@ const LoadTransitCard = () => {
                         )}
                         name="Amount"
                         rules={{
-                            required: true,
+                            required: {
+                                value: true,
+                                message: "Amount is required",
+                            },
                             maxLength: 6,
-                            minLength: 3,
-                            message: "Amount is required",
+                            minLength: { value: 3, message: "Minimum of N100" },
+                            message: "Name is required",
                         }}
                     />
                     <TouchableOpacity
@@ -147,7 +159,7 @@ const LoadTransitCard = () => {
                             alignItems: "center",
                             marginTop: 330,
                         }}
-                        onPress={handleSubmit(handleConfirmPin())}
+                        onPress={handleSubmit(onSubmit)}
                     >
                         <PButton name="Next" />
                     </TouchableOpacity>
