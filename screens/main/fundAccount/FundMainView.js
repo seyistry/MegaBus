@@ -26,9 +26,6 @@ const FundMain = () => {
         return Goto({ direction: "FundAmountEntered" });
     };
 
-    const handleHideBalance = () =>
-        toggle ? setToggle(false) : setToggle(true);
-
     return (
         <ScrollView
             style={{ flex: 1, backgroundColor: white }}
@@ -56,7 +53,7 @@ const FundMain = () => {
                         fontFamily: "HeeboR",
                         fontSize: 12,
                         color: labelgray,
-                        marginBottom: 5,
+                        marginBottom: 2,
                     }}
                 >
                     Amount
@@ -66,7 +63,7 @@ const FundMain = () => {
                     control={control}
                     render={({ field: { onChange, onBlur, value } }) => (
                         <FormInput
-                            // style={styles.input}
+                            errorText={errors?.Amount?.message}
                             keyboardType="numeric"
                             maxLength={6}
                             onBlur={onBlur}
@@ -74,25 +71,20 @@ const FundMain = () => {
                                 onChange(amountFormatter(value, newValue))
                             }
                             value={value}
-                            // register={register}
                             name="Amount"
-                            minLength={3}
                         />
                     )}
                     name="Amount"
                     rules={{
-                        required: true,
+                        required: {
+                            value: true,
+                            message: "Amount is required",
+                        },
                         maxLength: 6,
-                        minLength: 3,
+                        minLength: { value: 3, message: "Minimum of N100" },
                         message: "Name is required",
                     }}
                 />
-                {/* <FormInput
-                    name="Amount"
-                    type="number"
-                    register={register}
-                    required
-                /> */}
                 <TouchableOpacity
                     style={{
                         flex: 1,

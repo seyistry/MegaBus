@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
         height: 44,
         // backgroundColor: "#FAFAFC",
         borderWidth: 1,
-        borderColor: pryColor,
         justifyContent: "center",
         borderRadius: 4,
     },
@@ -20,10 +19,19 @@ const styles = StyleSheet.create({
         marginRight: 10,
         justifyContent: "center",
     },
-    input: {
-        marginLeft: 10,
+    inputSecure: {
         color: "#21293B",
         width: 280,
+        paddingLeft: 10,
+    },
+    inputNotSecure: {
+        color: "#21293B",
+        width: 280,
+        width: "100%",
+        borderWidth: 1,
+        borderRadius: 4,
+        height: 44,
+        paddingLeft: 10,
     },
 });
 
