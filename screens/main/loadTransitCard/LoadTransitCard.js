@@ -7,7 +7,6 @@ import {
     StyleSheet,
     Switch,
     Modal,
-    useWindowDimensions,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import OTPTextView from "react-native-otp-textinput";
@@ -48,7 +47,7 @@ const LoadTransitCard = () => {
     return (
         <ScrollView
             style={{ flex: 1, backgroundColor: white }}
-            stickyHeaderIndices={[1]}
+            stickyHeaderIndices={[0]}
         >
             <Modal
                 animationType="slide"
