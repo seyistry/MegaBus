@@ -20,6 +20,7 @@ import PButton from "../../../components/button/pryButton/PButton";
 import Goto from "../../../navigation/Goto";
 import { amountFormatter } from "../../../utils/formatters";
 import BalanceDashboard from "../../../components/BalanceDashboard";
+import { BlurView } from "expo-blur";
 
 const LoadTransitCard = () => {
     const {
@@ -51,62 +52,68 @@ const LoadTransitCard = () => {
         >
             <Modal
                 animationType="slide"
-                // transparent={true}
+                transparent={true}
                 visible={modalVisible}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: 320,
-                                alignItems: "flex-start",
-                                left: 3,
-                                top: 2,
-                            }}
-                        >
-                            <TouchableOpacity
-                                onPress={() => setModalVisible(false)}
+                <BlurView
+                    intensity={100}
+                    tint="dark"
+                    style={styles.blurContainer}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    width: 320,
+                                    alignItems: "flex-start",
+                                    left: 3,
+                                    top: 2,
+                                }}
                             >
-                                <MaterialIcons
-                                    name="cancel"
-                                    size={31}
-                                    color="#FA0A0A"
+                                <TouchableOpacity
+                                    onPress={() => setModalVisible(false)}
+                                >
+                                    <MaterialIcons
+                                        name="cancel"
+                                        size={31}
+                                        color="#FA0A0A"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    borderWidth: 0.3,
+                                    width: 320,
+                                    top: 35,
+                                    opacity: 0.1,
+                                }}
+                            />
+                            <Text
+                                style={{
+                                    marginTop: 20,
+                                    fontSize: 18,
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                Security Verification
+                            </Text>
+                            <Text style={{ fontSize: 14 }}>Input your PIN</Text>
+                            <View style={{ marginTop: 30, marginBottom: 10 }}>
+                                <OTPTextView
+                                    // handleTextChange={(e) => {}}
+                                    containerStyle={styles.textInputContainer}
+                                    textInputStyle={styles.roundedTextInput}
+                                    tintColor={pryColor}
                                 />
+                            </View>
+                            <TouchableOpacity onPress={handleConfirmPin}>
+                                <PButton name="Confirm" />
                             </TouchableOpacity>
                         </View>
-                        <View
-                            style={{
-                                position: "absolute",
-                                borderWidth: 0.3,
-                                width: 320,
-                                top: 35,
-                                opacity: 0.1,
-                            }}
-                        />
-                        <Text
-                            style={{
-                                marginTop: 20,
-                                fontSize: 18,
-                                fontWeight: "bold",
-                            }}
-                        >
-                            Security Verification
-                        </Text>
-                        <Text style={{ fontSize: 14 }}>Input your PIN</Text>
-                        <View style={{ marginTop: 30, marginBottom: 10 }}>
-                            <OTPTextView
-                                // handleTextChange={(e) => {}}
-                                containerStyle={styles.textInputContainer}
-                                textInputStyle={styles.roundedTextInput}
-                                tintColor={pryColor}
-                            />
-                        </View>
-                        <TouchableOpacity onPress={handleConfirmPin}>
-                            <PButton name="Confirm" />
-                        </TouchableOpacity>
                     </View>
-                </View>
+                </BlurView>
             </Modal>
             <Header name="Load Transit Card" />
             <BalanceDashboard />
@@ -224,6 +231,9 @@ const styles = StyleSheet.create({
         height: 44,
         padding: 10,
         borderRadius: 4,
+    },
+    blurContainer: {
+        flex: 1,
     },
     label: {
         fontFamily: "HeeboM",

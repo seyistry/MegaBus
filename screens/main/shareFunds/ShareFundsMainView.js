@@ -7,10 +7,10 @@ import {
     StyleSheet,
     Switch,
     Modal,
-    useWindowDimensions,
 } from "react-native";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 import OTPTextView from "react-native-otp-textinput";
+import { useNavigation } from "@react-navigation/native";
 import Header from "../../../components/Header";
 import { Picker } from "@react-native-picker/picker";
 import { useForm, Controller } from "react-hook-form";
@@ -20,6 +20,7 @@ import PButton from "../../../components/button/pryButton/PButton";
 import Goto from "../../../navigation/Goto";
 import { amountFormatter } from "../../../utils/formatters";
 import BalanceDashboard from "../../../components/BalanceDashboard";
+import { BlurView } from "expo-blur";
 
 const Pickers = () => {
     const [selectedOptions, setSelectedOptions] = useState();
@@ -55,7 +56,7 @@ const Pickers = () => {
     );
 };
 const ShareFundsMainView = () => {
-    const window = useWindowDimensions();
+    const navigation = useNavigation();
     const {
         register,
         setValue,
@@ -68,74 +69,87 @@ const ShareFundsMainView = () => {
 
     const [isEnabled, setIsEnabled] = useState(false);
 
-    const handleConfirmPin = () => {
-        return Goto({ direction: "Success", title: "COMPLETED" });
+    const onSubmit = (data) => {
+        return setModalVisible(() => true);
     };
+
+    const handleConfirmPin = (props) => {
+        navigation.navigate("Success", {
+            title: "COMPLETED",
+        });
+    };
+
     const toggleSwitch = () => setIsEnabled((previousState) => !previousState);
 
     return (
         <ScrollView
             style={{ flex: 1, backgroundColor: white }}
-            stickyHeaderIndices={[1]}
+            stickyHeaderIndices={[0]}
         >
             <Modal
                 animationType="slide"
-                // transparent={true}
+                transparent={true}
                 visible={modalVisible}
             >
-                <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <View
-                            style={{
-                                position: "absolute",
-                                width: 320,
-                                alignItems: "flex-start",
-                                left: 3,
-                                top: 2,
-                            }}
-                        >
-                            <TouchableOpacity
-                                onPress={() => setModalVisible(false)}
+                <BlurView
+                    intensity={100}
+                    tint="dark"
+                    style={styles.blurContainer}
+                >
+                    <View style={styles.centeredView}>
+                        <View style={styles.modalView}>
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    width: 320,
+                                    alignItems: "flex-start",
+                                    left: 3,
+                                    top: 2,
+                                }}
                             >
-                                <MaterialIcons
-                                    name="cancel"
-                                    size={31}
-                                    color="#FA0A0A"
+                                <TouchableOpacity
+                                    onPress={() => setModalVisible(false)}
+                                >
+                                    <MaterialIcons
+                                        name="cancel"
+                                        size={31}
+                                        color="#FA0A0A"
+                                    />
+                                </TouchableOpacity>
+                            </View>
+                            <View
+                                style={{
+                                    position: "absolute",
+                                    borderWidth: 0.3,
+                                    width: 320,
+                                    top: 35,
+                                    opacity: 0.1,
+                                }}
+                            />
+                            <Text
+                                style={{
+                                    marginTop: 20,
+                                    fontSize: 18,
+                                    fontWeight: "bold",
+                                }}
+                            >
+                                Security Verification
+                            </Text>
+                            <Text style={{ fontSize: 14 }}>Input your PIN</Text>
+                            <View style={{ marginTop: 30, marginBottom: 10 }}>
+                                <OTPTextView
+                                    // handleTextChange={(e) => {}}
+                                    containerStyle={styles.textInputContainer}
+                                    textInputStyle={styles.roundedTextInput}
+                                    tintColor={pryColor}
                                 />
+                            </View>
+                            <TouchableOpacity onPress={handleConfirmPin}>
+                                <PButton name="Confirm" />
                             </TouchableOpacity>
                         </View>
-                        <View
-                            style={{
-                                position: "absolute",
-                                borderWidth: 0.3,
-                                width: 320,
-                                top: 35,
-                                opacity: 0.1,
-                            }}
-                        />
-                        <Text
-                            style={{
-                                marginTop: 20,
-                                fontSize: 18,
-                                fontWeight: "bold",
-                            }}
-                        >
-                            Security Verification
-                        </Text>
-                        <Text style={{ fontSize: 14 }}>Input your PIN</Text>
-                        <View style={{ marginTop: 30, marginBottom: 10 }}>
-                            <OTPTextView
-                                // handleTextChange={(e) => {}}
-                                containerStyle={styles.textInputContainer}
-                                textInputStyle={styles.roundedTextInput}
-                                tintColor={pryColor}
-                            />
-                        </View>
-                        <TouchableOpacity onPress={handleConfirmPin()}>
-                            <PButton name="Confirm" />
-                        </TouchableOpacity>
                     </View>
-                </View>
+                </BlurView>
             </Modal>
             <Header name="Share Funds" />
             <BalanceDashboard />
@@ -157,7 +171,7 @@ const ShareFundsMainView = () => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <FormInput
-                                // style={styles.input}
+                                errorText={errors?.Amount?.message}
                                 keyboardType="numeric"
                                 maxLength={6}
                                 onBlur={onBlur}
@@ -172,10 +186,13 @@ const ShareFundsMainView = () => {
                         )}
                         name="Amount"
                         rules={{
-                            required: true,
+                            required: {
+                                value: true,
+                                message: "Amount is required",
+                            },
                             maxLength: 6,
-                            minLength: 3,
-                            message: "Amount is required",
+                            minLength: { value: 3, message: "Minimum of N100" },
+                            message: "Name is required",
                         }}
                     />
                 </View>
@@ -186,23 +203,28 @@ const ShareFundsMainView = () => {
                         control={control}
                         render={({ field: { onChange, onBlur, value } }) => (
                             <FormInput
-                                // style={styles.input}
+                                errorText={errors?.RecipentID?.message}
                                 keyboardType="numeric"
                                 maxLength={10}
                                 onBlur={onBlur}
                                 onChangeText={(value) => onChange(value)}
                                 value={value}
                                 // register={register}
-                                name="Recipent ID"
+                                name="RecipentID"
                                 minLength={10}
                             />
                         )}
                         name="RecipentID"
                         rules={{
-                            required: true,
+                            required: {
+                                value: true,
+                                message: "Recipent’s ID is required",
+                            },
                             maxLength: 10,
-                            minLength: 10,
-                            message: "Recipent’s ID is required",
+                            minLength: {
+                                value: 10,
+                                message: "Minimum of 10 character",
+                            },
                         }}
                     />
                 </View>
@@ -246,7 +268,7 @@ const ShareFundsMainView = () => {
                         alignItems: "center",
                         marginTop: 80,
                     }}
-                    onPress={handleSubmit(handleConfirmPin())}
+                    onPress={handleSubmit(onSubmit)}
                 >
                     <PButton name="Next" />
                 </TouchableOpacity>
@@ -261,6 +283,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         marginTop: 22,
+    },
+    blurContainer: {
+        flex: 1,
     },
     modalView: {
         margin: 20,
