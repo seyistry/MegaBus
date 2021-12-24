@@ -28,7 +28,7 @@ import NairaIcon from "../../../assets/image/NairaIcon";
 import WhiteBtn from "../../../components/button/whiteButton/WhiteBtn";
 import Goto from "../../../navigation/Goto";
 
-const Home = () => {
+const Home = ({ navigation }) => {
     const image = `https://i.pravatar.cc/150?img=12`;
     const [toggle, setToggle] = useState(false);
     const handleHideBalance = () =>
@@ -59,7 +59,7 @@ const Home = () => {
                         // borderWidth: 1,
                     }}
                 >
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
                         <NavIcon />
                     </TouchableOpacity>
                     {Platform.OS === "ios" ? (
