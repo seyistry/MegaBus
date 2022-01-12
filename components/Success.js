@@ -5,16 +5,11 @@ import { useRoute } from "@react-navigation/native";
 import PButton from "./button/pryButton/PButton";
 import { pryColor } from "../utils/color";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Goto from "../navigation/Goto";
 import HeaderNoTitle from "./HeaderNoTitle";
 
-const Success = (props) => {
+const Success = ({ navigation }) => {
     const route = useRoute();
     const { title, description } = route.params;
-
-    const handlePress = () => {
-        return Goto({ direction: "Home" });
-    };
     return (
         <View style={{ flex: 1, alignItems: "center" }}>
             <HeaderNoTitle />
@@ -40,7 +35,9 @@ const Success = (props) => {
             <View style={{ flex: 1, marginTop: 310 }}>
                 <TouchableOpacity
                     style={{ padding: 10 }}
-                    onPress={handlePress()}
+                    onPress={() => {
+                        navigation.navigate("Main", { screen: "Home" });
+                    }}
                 >
                     <PButton name="Okay" />
                 </TouchableOpacity>
