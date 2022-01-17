@@ -33,7 +33,10 @@ const FadeInView = (props) => {
     );
 };
 
-const LoadApp = () => {
+const LoadApp = ({ navigation }) => {
+    setTimeout(() => {
+        navigation.navigate("Onboarding");
+    }, 1500);
     return (
         <View
             style={{
@@ -49,7 +52,7 @@ const LoadApp = () => {
                 }}
             >
                 <FadeInView>
-                    <Logo strokeWidth={0.5} stroke="black" />
+                    <Logo />
                 </FadeInView>
             </View>
         </View>
