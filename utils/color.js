@@ -8,3 +8,4 @@ export const green = "#029888";
 export const black = "#364852";
 export const labelgray = "#8F8F8F";
 export const red = "#ff0033";
+export const skyBlue = "#C2DEEE";
