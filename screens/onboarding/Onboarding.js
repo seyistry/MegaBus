@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { View } from "react-native";
 import PagerView from "react-native-pager-view";
 import OnboardPage from "../../components/OnboardPage";
@@ -7,7 +7,18 @@ import OnBScreenTwoBg from "../../assets/image/OnBScreenTwoBg.png";
 import OnBScreenThreeBg from "../../assets/image/OnBScreenThreeBg.png";
 import Home from "../LoginSignUp";
 
-const Onboarding = () => {
+const Onboarding = ({ navigation }) => {
+    useEffect(
+        () =>
+            navigation.addListener("beforeRemove", (e) => {
+                // Prevent default behavior of leaving the screen
+                e.preventDefault();
+
+                return navigation.navigate("Onboarding");
+            }),
+        [navigation]
+    );
+    
     const pagerRef = useRef(null);
 
     return (
