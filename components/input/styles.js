@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         justifyContent: "center",
         borderRadius: 4,
+        borderColor: pryColor,
     },
     text: {
         fontSize: 16,
