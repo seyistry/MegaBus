@@ -11,11 +11,42 @@ import iconSmall from "../../assets/image/iconSmall.png";
 import logoBig from "../../assets/image/logoBig.png";
 import FormInput from "../../components/input/FormInput";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { pryColor } from "../../utils/color";
+import { pryColor, labelgray } from "../../utils/color";
 import ProgressBar from "../../components/progress/ProgressBar";
 import PButton from "../../components/button/pryButton/PButton";
+import { useForm, Controller } from "react-hook-form";
+import Goto from "../../navigation/Goto";
 
 const SignUp = () => {
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        control,
+        reset,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
+    const handlePress = () => {
+        return Goto({
+            direction: "SignUpOTP",
+        });
+    };
+    const handleLoginPress = () => {
+        return Goto({
+            direction: "Login",
+        });
+    };
+
+    const onChange = (arg) => {
+        return {
+            value: arg.nativeEvent.text,
+        };
+    };
     const [toggleBox, setToggleBox] = useState(false);
 
     const handleToggleBox = () => {
@@ -23,8 +54,8 @@ const SignUp = () => {
     };
 
     return (
-        <ScrollView contentContainerStyle={{ flex: 1, marginHorizontal: 20 }}>
-            <View style={[styles.container]}>
+        <ScrollView>
+            <View style={{ flex: 1, marginHorizontal: 20 }}>
                 <View
                     style={{
                         marginTop: 50,
@@ -55,29 +86,68 @@ const SignUp = () => {
                 </View>
                 <View
                     style={{
+                        flex: 1,
                         marginTop: 40,
-                        width: "100%",
-                        alignItems: "center",
+                        // width: "100%",
+                        // alignItems: "center",
                     }}
                 >
-                    <View style={{ width: "100%" }}>
-                        <FormInput name="Mobile Number" />
+                    <View style={{ flex: 1 }}>
                         <Text
                             style={{
-                                textAlign: "center",
-                                fontSize: 10,
-                                marginTop: 5,
+                                fontFamily: "HeeboR",
+                                fontSize: 12,
+                                color: labelgray,
                             }}
                         >
-                            Provide the mobile number you would wish to receive
-                            your code.
+                            Mobile Number
                         </Text>
+                        <Controller
+                            defaultValue=""
+                            control={control}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <FormInput
+                                    errorText={errors?.MobileNumber?.message}
+                                    keyboardType="numeric"
+                                    minLength={10}
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                    name="MobileNumber"
+                                />
+                            )}
+                            name="MobileNumber"
+                            rules={{
+                                required: {
+                                    value: true,
+                                    message: "Mobile Number is required",
+                                },
+                                maxLength: 14,
+                                minLength: {
+                                    value: 10,
+                                    message: "Minimum of 10 digits",
+                                },
+                                message: "Mobile Number is required",
+                            }}
+                        />
                     </View>
+                    <Text
+                        style={{
+                            textAlign: "center",
+                            fontSize: 10,
+                            marginTop: 5,
+                        }}
+                    >
+                        Provide the mobile number you would wish to receive your
+                        code.
+                    </Text>
                     <View
                         style={{
                             flexDirection: "row",
                             alignItems: "center",
-                            marginHorizontal: 36,
+                            marginHorizontal: 20,
                             marginTop: 20,
                         }}
                     >
@@ -130,7 +200,7 @@ const SignUp = () => {
                     <View
                         style={{
                             width: "100%",
-                            marginTop: 60,
+                            marginTop: 50,
                             alignItems: "center",
                         }}
                     >
@@ -148,15 +218,18 @@ const SignUp = () => {
                             >
                                 Already have an account?
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={handleLoginPress()}>
                                 <Text style={{ fontSize: 12, color: pryColor }}>
                                     {"  Login"}
                                 </Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ marginTop: 45 }}>
+                        <TouchableOpacity
+                            onPress={handleSubmit(handlePress())}
+                            style={{ marginTop: 45 }}
+                        >
                             <PButton name="Continue" />
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -167,7 +240,7 @@ const SignUp = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
+        // alignItems: "center",
     },
     text: {
         fontSize: 12,
