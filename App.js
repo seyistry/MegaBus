@@ -7,6 +7,7 @@ import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import Tabs from "./navigation/Tabs";
 import Stacks from "./navigation/Stacks";
+import Drawers from "./navigation/Drawers";
 import { pryColor } from "./utils/color";
 import SignUpAuthSetUp from "./screens/signup/SignUpAuthSetUp";
 import SignUpCreatePin from "./screens/signup/SignUpCreatePin";
@@ -51,7 +52,7 @@ export default function App() {
             <View style={styles.container}>
                 <MegaStatusBar backgroundColor={pryColor} style="light" />
                 <NavigationContainer>
-                    <Stacks />
+                    <Drawers />
                 </NavigationContainer>
             </View>
         );
