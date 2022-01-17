@@ -4,8 +4,21 @@ import iconBig from "../assets/image/iconBig.png";
 import logoBig from "../assets/image/logoBig.png";
 import PButton from "../components/button/pryButton/PButton";
 import SButton from "../components/button/secButton/SButton";
+import Goto from "../navigation/Goto";
 
 const LoginSignUp = () => {
+    const handleLoginPress = () => {
+        return Goto({
+            direction: "Login",
+        });
+    };
+
+    const handleSignUpPress = () => {
+        return Goto({
+            direction: "SignUp",
+        });
+    };
+
     return (
         <View style={styles.container}>
             <View
@@ -24,10 +37,16 @@ const LoginSignUp = () => {
                     justifyContent: "center",
                 }}
             >
-                <TouchableOpacity style={[styles.btn]}>
+                <TouchableOpacity
+                    onPress={handleLoginPress()}
+                    style={[styles.btn]}
+                >
                     <PButton name={"Login"} />
                 </TouchableOpacity>
-                <TouchableOpacity style={{ marginBottom: 60 }}>
+                <TouchableOpacity
+                    onPress={handleSignUpPress()}
+                    style={{ marginBottom: 60 }}
+                >
                     <SButton name={"Sign Up"} />
                 </TouchableOpacity>
             </View>
