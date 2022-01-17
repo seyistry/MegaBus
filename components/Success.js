@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useRoute } from "@react-navigation/native";
@@ -10,6 +10,15 @@ import HeaderNoTitle from "./HeaderNoTitle";
 const Success = ({ navigation }) => {
     const route = useRoute();
     const { title, description } = route.params;
+    useEffect(
+        () =>
+            navigation.addListener("beforeRemove", (e) => {
+                // Prevent default behavior of leaving the screen
+                e.preventDefault();
+                return navigation.navigate("Home");
+            }),
+        [navigation]
+    );
     return (
         <View style={{ flex: 1, alignItems: "center" }}>
             <HeaderNoTitle />
@@ -25,6 +34,7 @@ const Success = ({ navigation }) => {
                     fontSize: 24,
                     textAlign: "center",
                     marginTop: 30,
+                    marginHorizontal: 20,
                 }}
             >
                 {title}
