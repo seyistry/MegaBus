@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import {
     Text,
     View,
@@ -10,32 +10,70 @@ import {
 import iconSmall from "../assets/image/iconSmall.png";
 import logoBig from "../assets/image/logoBig.png";
 import FormInput from "../components/input/FormInput";
-import { pryColor, white } from "../utils/color";
+import { labelgray, pryColor, white } from "../utils/color";
 import PButton from "../components/button/pryButton/PButton";
 import FacebookIcon from "../assets/image/FacebookIcon";
 import GoogleIcon from "../assets/image/GoogleIcon";
+import { useForm, Controller } from "react-hook-form";
+import Goto from "../navigation/Goto";
 
-const Login = () => {
+const Login = ({ navigation }) => {
+    useEffect(
+        () =>
+            navigation.addListener("beforeRemove", (e) => {
+                // Prevent default behavior of leaving the screen
+                e.preventDefault();
+
+                return navigation.navigate("LoginSignUp");
+            }),
+        [navigation]
+    );
+    const {
+        register,
+        setValue,
+        handleSubmit,
+        control,
+        reset,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = (data) => {
+        console.log(data);
+    };
+
+    const handlePress = () => {
+        return Goto({
+            direction: "Main",
+            Screen: "Home",
+        });
+    };
+    const handleSignUpPress = () => {
+        return Goto({
+            direction: "SignUp",
+        });
+    };
+
+    const onChange = (arg) => {
+        return {
+            value: arg.nativeEvent.text,
+        };
+    };
+
     return (
         <ScrollView contentContainerStyle={{ flex: 1, marginHorizontal: 20 }}>
             <View style={[styles.container]}>
                 <View
                     style={{
-                        // height: "15%",
                         marginTop: 50,
                         alignItems: "center",
-                        // justifyContent: "flex-end",
                     }}
                 >
                     <Image source={logoBig} />
                 </View>
                 <View
                     style={{
-                        // height: "30%",
                         alignItems: "center",
                         marginVertical: 20,
-                        // borderWidth: 1,
-                        // justifyContent: "space-evenly",
                     }}
                 >
                     <Image source={iconSmall} />
@@ -60,22 +98,73 @@ const Login = () => {
                         </Text>
                     </View>
                 </View>
-                <View
-                    style={{
-                        width: "100%",
-                        height: "55%",
-                        alignItems: "center",
-                        // justifyContent: "space-around",
-                    }}
-                >
-                    <View style={styles.form}>
-                        <FormInput name="Username" />
-                    </View>
+                <View style={{ flex: 1 }}>
                     <View>
-                        <FormInput name="Password" />
+                        <Text style={styles.text}>Username</Text>
+                        <Controller
+                            defaultValue=""
+                            control={control}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <FormInput
+                                    errorText={errors?.Username?.message}
+                                    minLength={6}
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                    name="Username"
+                                />
+                            )}
+                            name="Username"
+                            rules={{
+                                required: {
+                                    value: true,
+                                    message: "Username is required",
+                                },
+                                maxLength: 14,
+                                minLength: {
+                                    value: 6,
+                                    message: "Minimum of 6 digits",
+                                },
+                                message: "Username is required",
+                            }}
+                        />
+                    </View>
+                    <View style={{ marginTop: 20 }}>
+                        <Text style={styles.text}>Password</Text>
+                        <Controller
+                            defaultValue=""
+                            control={control}
+                            render={({
+                                field: { onChange, onBlur, value },
+                            }) => (
+                                <FormInput
+                                    errorText={errors?.Password?.message}
+                                    minLength={6}
+                                    onBlur={onBlur}
+                                    onChangeText={onChange}
+                                    value={value}
+                                    name="Password"
+                                />
+                            )}
+                            name="Password"
+                            rules={{
+                                required: {
+                                    value: true,
+                                    message: "Password is required",
+                                },
+                                maxLength: 14,
+                                minLength: {
+                                    value: 6,
+                                    message: "Minimum of 6 digits",
+                                },
+                                message: "Password is required",
+                            }}
+                        />
                     </View>
 
-                    <View style={{ width: "100%", marginTop: 10 }}>
+                    <View style={{ marginTop: 10 }}>
                         <TouchableOpacity>
                             <Text
                                 style={{
@@ -88,7 +177,10 @@ const Login = () => {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <TouchableOpacity style={{ marginTop: 30 }}>
+                    <TouchableOpacity
+                        onPress={handleSubmit(handlePress())}
+                        style={{ marginTop: 30, alignItems: "center" }}
+                    >
                         <PButton name="Login" />
                     </TouchableOpacity>
                     <View
@@ -124,7 +216,7 @@ const Login = () => {
                             >
                                 Don’t have an account yet?
                             </Text>
-                            <TouchableOpacity>
+                            <TouchableOpacity onPress={handleSignUpPress()}>
                                 <Text style={{ fontSize: 12, color: pryColor }}>
                                     {"  Sign Up"}
                                 </Text>
@@ -140,7 +232,11 @@ const Login = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
+    },
+    text: {
+        fontFamily: "HeeboR",
+        fontSize: 12,
+        color: labelgray,
     },
     iconConatainer: {
         width: 54,
@@ -156,7 +252,7 @@ const styles = StyleSheet.create({
         elevation: 2,
     },
     form: {
-        width: "100%",
+        // width: "100%",
         marginBottom: 10,
     },
 });
