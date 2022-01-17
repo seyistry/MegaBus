@@ -55,7 +55,7 @@ const FormInput = (props) => {
                     )}
                 </>
             ) : (
-                <View style={{ flex: 1 }}>
+                <View>
                     <TextInput
                         style={[
                             styles.inputNotSecure,
