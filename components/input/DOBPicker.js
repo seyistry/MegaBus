@@ -48,8 +48,8 @@ const DOBPicker = () => {
                                 editable={false}
                                 value={
                                     toggle
-                                        ? date.toLocaleDateString()
-                                        : "Date of Birth"
+                                        ? `   ${date.toLocaleDateString()}`
+                                        : "   Date of Birth"
                                 }
                             />
                         </View>
