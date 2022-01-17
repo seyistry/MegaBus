@@ -1,12 +1,19 @@
 import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, View, Image, StyleSheet, TouchableOpacity } from "react-native";
 import iconMid from "../../assets/image/iconMid.png";
 import logoBig from "../../assets/image/logoBig.png";
 import FormInput from "../../components/input/FormInput";
 import ProgressBar from "../../components/progress/ProgressBar";
 import PButton from "../../components/button/pryButton/PButton";
+import { labelgray } from "../../utils/color";
+import Goto from "../../navigation/Goto";
 
 const SignUpAuthSetUp = () => {
+    const handlePress = () => {
+        return Goto({
+            direction: "SignUpCreatePin",
+        });
+    };
     return (
         <View style={[styles.container, { marginHorizontal: 20 }]}>
             <View
@@ -27,26 +34,32 @@ const SignUpAuthSetUp = () => {
                 <Image source={iconMid} />
             </View>
             <View style={{ width: "100%", marginTop: 40 }}>
+                <Text style={styles.text}>Username</Text>
                 <View style={styles.spaceDown}>
                     <FormInput name="username" />
                 </View>
+                <Text style={styles.text}>Password</Text>
                 <View style={styles.spaceDown}>
                     <FormInput name="password" />
                 </View>
+                <Text style={styles.text}>Confirm Password</Text>
                 <View style={styles.spaceDown}>
                     <FormInput name="password" />
                 </View>
                 <View
                     style={{
-                        width: "100%",
-                        marginTop: 128,
+                        // width: "100%",
+                        marginTop: 118,
                         alignItems: "center",
                     }}
                 >
                     <ProgressBar width="60%" />
-                    <View style={{ marginVertical: 20 }}>
+                    <TouchableOpacity
+                        onPress={handlePress()}
+                        style={{ marginVertical: 20 }}
+                    >
                         <PButton name="Continue" />
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -59,7 +72,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     text: {
+        fontFamily: "HeeboR",
         fontSize: 12,
+        color: labelgray,
     },
     spaceDown: {
         marginBottom: 10,

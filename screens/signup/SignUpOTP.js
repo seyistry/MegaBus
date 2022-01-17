@@ -1,13 +1,19 @@
 import React, { useRef } from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import { Text, View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import logoBig from "../../assets/image/logoBig.png";
 import OTPTextView from "react-native-otp-textinput";
 import { pryColor } from "../../utils/color";
 import ProgressBar from "../../components/progress/ProgressBar";
 import PButton from "../../components/button/pryButton/PButton";
+import Goto from "../../navigation/Goto";
 
 const SignUpOTP = () => {
     // let otpInput = useRef(null);
+    const handlePress = () => {
+        return Goto({
+            direction: "SignUpBio",
+        });
+    };
 
     return (
         <View style={[styles.container]}>
@@ -64,9 +70,9 @@ const SignUpOTP = () => {
                     }}
                 >
                     <ProgressBar width="20%" />
-                    <View style={{ marginTop: 20 }}>
+                    <TouchableOpacity onPress={handlePress()} style={{ marginTop: 20 }}>
                         <PButton name="Continue" />
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>

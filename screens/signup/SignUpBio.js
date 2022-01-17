@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, ScrollView, StyleSheet, Image } from "react-native";
+import {
+    View,
+    ScrollView,
+    StyleSheet,
+    Image,
+    Text,
+    TouchableOpacity,
+} from "react-native";
 import iconMid from "../../assets/image/iconMid.png";
 import logoBig from "../../assets/image/logoBig.png";
 import FormInput from "../../components/input/FormInput";
@@ -7,6 +14,8 @@ import ProgressBar from "../../components/progress/ProgressBar";
 import PButton from "../../components/button/pryButton/PButton";
 import Pickers from "../../components/input/Pickers";
 import DOBPicker from "../../components/input/DOBPicker";
+import { labelgray } from "../../utils/color";
+import Goto from "../../navigation/Goto";
 
 const SignUpBio = () => {
     const [toggleBox, setToggleBox] = useState(false);
@@ -15,8 +24,14 @@ const SignUpBio = () => {
         return !toggleBox ? setToggleBox(true) : setToggleBox(false);
     };
 
+    const handlePress = () => {
+        return Goto({
+            direction: "SignUpAuthSetUp",
+        });
+    };
+
     return (
-        <ScrollView contentContainerStyle={{ flex: 1, marginHorizontal: 20 }}>
+        <ScrollView>
             <View style={[styles.container]}>
                 <View
                     style={{
@@ -37,35 +52,42 @@ const SignUpBio = () => {
                 </View>
                 <View
                     style={{
-                        width: "100%",
-                        alignItems: "center",
+                        flex: 1,
+                        // alignItems: "center",
                     }}
                 >
-                    <View style={{ width: "100%" }}>
+                    <View style={{ flex: 1 }}>
+                        <Text style={styles.text}>Mobile Number</Text>
                         <View style={styles.spaceDown}>
-                            <FormInput name="Full name" />
+                            <FormInput name="Fullname" />
                         </View>
+                        <Text style={styles.text}>Email</Text>
                         <View style={styles.spaceDown}>
                             <FormInput name="Email" />
                         </View>
+                        <Text style={styles.text}>Gender</Text>
                         <View style={styles.spaceDown}>
                             <Pickers />
                         </View>
+                        <Text style={styles.text}>Date of Birth</Text>
                         <View style={styles.spaceDown}>
                             <DOBPicker />
                         </View>
                     </View>
                     <View
                         style={{
-                            width: "100%",
-                            marginTop: 100,
+                            // width: "100%",
+                            marginTop: 80,
                             alignItems: "center",
                         }}
                     >
                         <ProgressBar width="40%" />
-                        <View style={{ marginVertical: 20 }}>
+                        <TouchableOpacity
+                            onPress={handlePress()}
+                            style={{ marginVertical: 20 }}
+                        >
                             <PButton name="Continue" />
-                        </View>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
@@ -76,10 +98,13 @@ const SignUpBio = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: "center",
+        // alignItems: "center",
+        marginHorizontal: 20,
     },
     text: {
+        fontFamily: "HeeboR",
         fontSize: 12,
+        color: labelgray,
     },
     spaceDown: {
         marginBottom: 10,
