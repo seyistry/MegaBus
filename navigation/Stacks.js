@@ -21,12 +21,22 @@ import Scan from "../screens/main/scanToPay/Scan";
 import ShareFundsMainView from "../screens/main/shareFunds/ShareFundsMainView";
 import LoadTransitCard from "../screens/main/loadTransitCard/LoadTransitCard";
 import CheckOut from "../screens/main/checkOut/CheckOut";
+import Profile from "../screens/settingScreens/Profile";
+import CustomerService from "../screens/settingScreens/CustomerService";
+import Settings from "../screens/settingScreens/Settings";
+import ChangePass from "../screens/settingScreens/ChangePass";
+import ChangePin from "../screens/settingScreens/ChangePin";
 
 const Stack = createStackNavigator();
 
 function Stacks() {
     return (
         <Stack.Navigator>
+            <Stack.Screen
+                name="LoadApp"
+                component={LoadApp}
+                options={{ headerShown: false }}
+            />
             <Stack.Screen
                 name="Main"
                 component={Tabs}
@@ -78,14 +88,14 @@ function Stacks() {
                 options={{ headerShown: false }}
             />
             <Stack.Screen
-                name="LoadApp"
-                component={LoadApp}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
                 name="Login"
                 component={Login}
-                options={{ headerShown: false }}
+                options={{
+                    headerShown: false,
+                    drawerLockMode: 'locked-closed',
+                    gestureEnabled: false,
+                    swipeEnabled: false
+                }}
             />
             <Stack.Screen
                 name="LoginSignUp"
@@ -125,6 +135,31 @@ function Stacks() {
             <Stack.Screen
                 name="CheckOut"
                 component={CheckOut}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="My Profile"
+                component={Profile}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Customer Service"
+                component={CustomerService}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Change Password"
+                component={ChangePass}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen
+                name="Change Pin"
+                component={ChangePin}
                 options={{ headerShown: false }}
             />
         </Stack.Navigator>
