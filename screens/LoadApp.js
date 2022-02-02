@@ -1,7 +1,9 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Text, View, StyleSheet, Image, Animated } from "react-native";
 import { pryColor } from "../utils/color";
 import Logo from "../assets/image/Logo";
+import { auth } from "../firebase/firebase.utils";
+import { onAuthStateChanged } from "firebase/auth";
 
 const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
@@ -34,9 +36,20 @@ const FadeInView = (props) => {
 };
 
 const LoadApp = ({ navigation }) => {
-    setTimeout(() => {
-        navigation.navigate("Onboarding");
-    }, 1500);
+    const [routeState, setRouteState] = useState(false);
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            setRouteState(true);
+            setTimeout(() => {
+                user
+                    ? navigation.navigate("Main")
+                    : navigation.navigate(
+                          `${routeState ? "Onboarding" : "Login"}`
+                      );
+            }, 1500);
+        });
+    }, []);
+
     return (
         <View
             style={{
