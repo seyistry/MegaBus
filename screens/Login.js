@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
     Text,
     View,
     Image,
+    Modal,
     TouchableOpacity,
     StyleSheet,
     ScrollView,
+    ActivityIndicator,
 } from "react-native";
+import { BlurView } from "expo-blur";
 import iconSmall from "../assets/image/iconSmall.png";
 import logoBig from "../assets/image/logoBig.png";
 import FormInput from "../components/input/FormInput";
@@ -16,18 +19,29 @@ import FacebookIcon from "../assets/image/FacebookIcon";
 import GoogleIcon from "../assets/image/GoogleIcon";
 import { useForm, Controller } from "react-hook-form";
 import Goto from "../navigation/Goto";
+import { auth } from "../firebase/firebase.utils";
+import { FIREBASE_clientId } from "@env";
+import * as WebBrowser from "expo-web-browser";
+import { ResponseType } from "expo-auth-session";
+import { GoogleAuthProvider, signInWithCredential } from "firebase/auth";
+import * as Google from "expo-auth-session/providers/google";
+
+WebBrowser.maybeCompleteAuthSession();
 
 const Login = ({ navigation }) => {
-    useEffect(
-        () =>
-            navigation.addListener("beforeRemove", (e) => {
-                // Prevent default behavior of leaving the screen
-                e.preventDefault();
+    const [modalVisible, setModalVisible] = useState(false);
+    const [request, response, promptAsync] = Google.useIdTokenAuthRequest({
+        clientId: FIREBASE_clientId,
+    });
+    React.useEffect(() => {
+        if (response?.type === "success") {
+            const { id_token } = response.params;
+            // const provider = new GoogleAuthProvider();
+            const credential = GoogleAuthProvider.credential(id_token);
+            signInWithCredential(auth, credential);
+        }
+    }, [response]);
 
-                return navigation.navigate("LoginSignUp");
-            }),
-        [navigation]
-    );
     const {
         register,
         setValue,
@@ -61,6 +75,23 @@ const Login = ({ navigation }) => {
 
     return (
         <ScrollView contentContainerStyle={{ flex: 1, marginHorizontal: 20 }}>
+            <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+            >
+                <BlurView
+                    intensity={100}
+                    tint="dark"
+                    style={{
+                        flex: 1,
+                        justifyContent: "center",
+                        alignItems: "center",
+                    }}
+                >
+                    <ActivityIndicator size="large" color={pryColor} />
+                </BlurView>
+            </Modal>
             <View style={[styles.container]}>
                 <View
                     style={{
@@ -195,6 +226,11 @@ const Login = ({ navigation }) => {
                                 <FacebookIcon />
                             </TouchableOpacity>
                             <TouchableOpacity
+                                disabled={!request}
+                                onPress={() => {
+                                    promptAsync();
+                                    setModalVisible(true);
+                                }}
                                 style={[
                                     styles.iconConatainer,
                                     { marginLeft: 40 },
