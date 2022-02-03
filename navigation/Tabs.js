@@ -1,19 +1,16 @@
 import React from "react";
-import { View, Text, Platform } from "react-native";
+import { Platform } from "react-native";
 import { Ionicons, AntDesign } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { pryColor } from "../utils/color";
 import Home from "../screens/main/home/Home";
-import FundAmountEntered from "../screens/main/fundAccount/FundAmountEntered";
 import FundMainView from "../screens/main/fundAccount/FundMainView";
 import TransactionMainView from "../screens/main/Transactions/TransactionMainView";
 import MyCardMainView from "../screens/main/myCard/MyCardMainView";
-import CardDetailsInputView from "../screens/main/myCard/CardDetailsInputView";
-import MyCardOTPcodeView from "../screens/main/myCard/MyCardOTPcodeView";
 
 const Tab = createBottomTabNavigator();
 
-function Tabs() {
+const Tabs = () => {
     return (
         <Tab.Navigator
             initialRouteName="Home"
@@ -111,6 +108,6 @@ function Tabs() {
             />
         </Tab.Navigator>
     );
-}
+};
 
 export default Tabs;
