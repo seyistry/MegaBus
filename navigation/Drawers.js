@@ -1,32 +1,24 @@
 import React, { useState } from "react";
+import { getAuth, signOut } from "firebase/auth";
+
 import {
-    Alert,
     Modal,
     View,
     Text,
     StyleSheet,
     Image,
     TouchableOpacity,
-    ImageBackground,
 } from "react-native";
-// import { useNavigation } from "@react-navigation/native";
-import { Entypo, Ionicons, AntDesign, Feather } from "@expo/vector-icons";
+import { Ionicons, AntDesign, Feather } from "@expo/vector-icons";
 import {
-    NavigationContainer,
     useNavigation,
     getFocusedRouteNameFromRoute,
 } from "@react-navigation/native";
-import {
-    createDrawerNavigator,
-    DrawerContentScrollView,
-    DrawerItemList,
-    DrawerItem,
-} from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import { BlurView } from "expo-blur";
 
-import Stacks from "./Stacks";
 import { pryColor } from "../utils/color";
-import LoadApp from "../screens/LoadApp";
+import PostAuthStacks from "./PostAuthStacks";
 
 const Drawer = createDrawerNavigator();
 
@@ -100,8 +92,8 @@ function CustomDrawerContent() {
                             </TouchableOpacity>
                             <TouchableOpacity
                                 onPress={() => {
-                                    setModalVisible(false);
-                                    navigation.navigate("Login");
+                                    const auth = getAuth();
+                                    signOut(auth);
                                 }}
                                 style={[
                                     styles.btnContainer,
@@ -222,18 +214,7 @@ function CustomDrawerContent() {
 }
 
 function Drawers() {
-    const DisableScreens = [
-        "Login",
-        "SignUp",
-        "LoginSignUp",
-        "LoadApp",
-        "Onboarding",
-        "SignUpAuthSetUp",
-        "SignUpBio",
-        "SignUpCreatePin",
-        "SignUpOTP",
-        "Success",
-    ];
+    const DisableScreens = ["Success"];
     return (
         <Drawer.Navigator
             drawerType="slide"
@@ -248,7 +229,7 @@ function Drawers() {
         >
             <Drawer.Screen
                 name="Home"
-                component={Stacks}
+                component={PostAuthStacks}
                 options={({ route }) => {
                     const routeName =
                         getFocusedRouteNameFromRoute(route) ?? "Home";
