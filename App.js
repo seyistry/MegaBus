@@ -54,7 +54,6 @@ export default function App() {
         loadFontsAsync();
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setCurrentUser(user);
-            console.log(currentUser);
             if (currentUser) {
                 setRouteState(true);
             } else if (!user && !routeState) {
