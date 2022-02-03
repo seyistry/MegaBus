@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Image, TouchableOpacity } from "react-native";
 import iconBig from "../assets/image/iconBig.png";
 import logoBig from "../assets/image/logoBig.png";
 import PButton from "../components/button/pryButton/PButton";
@@ -33,7 +33,7 @@ const LoginSignUp = () => {
                     <PButton name={"Login"} />
                 </TouchableOpacity>
                 <TouchableOpacity
-                    onPress={() =>  navigation.navigate("SignUp")}
+                    onPress={() => navigation.navigate("SignUp")}
                     style={{ marginBottom: 60 }}
                 >
                     <SButton name={"Sign Up"} />
