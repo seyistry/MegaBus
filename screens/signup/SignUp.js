@@ -15,9 +15,8 @@ import { pryColor, labelgray } from "../../utils/color";
 import ProgressBar from "../../components/progress/ProgressBar";
 import PButton from "../../components/button/pryButton/PButton";
 import { useForm, Controller } from "react-hook-form";
-import Goto from "../../navigation/Goto";
 
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
     const {
         register,
         setValue,
@@ -31,22 +30,12 @@ const SignUp = () => {
         console.log(data);
     };
 
-    const handlePress = () => {
-        return Goto({
-            direction: "SignUpOTP",
-        });
-    };
-    const handleLoginPress = () => {
-        return Goto({
-            direction: "Login",
-        });
-    };
-
     const onChange = (arg) => {
         return {
             value: arg.nativeEvent.text,
         };
     };
+    
     const [toggleBox, setToggleBox] = useState(false);
 
     const handleToggleBox = () => {
@@ -218,14 +207,18 @@ const SignUp = () => {
                             >
                                 Already have an account?
                             </Text>
-                            <TouchableOpacity onPress={handleLoginPress()}>
+                            <TouchableOpacity
+                                onPress={() => navigation.navigate("Login")}
+                            >
                                 <Text style={{ fontSize: 12, color: pryColor }}>
                                     {"  Login"}
                                 </Text>
                             </TouchableOpacity>
                         </View>
                         <TouchableOpacity
-                            onPress={handleSubmit(handlePress())}
+                            onPress={handleSubmit(() =>
+                                navigation.navigate("SignUpOTP")
+                            )}
                             style={{ marginTop: 45 }}
                         >
                             <PButton name="Continue" />
